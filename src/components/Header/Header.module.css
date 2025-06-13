@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 110px;
+  background-color: white;
+  padding: 0 30px;
+  min-width: 500px;
+  font-weight: 600;
+  color: black;
+  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 147px; /* 얘 기능 좀 확실히 알기  */
+  height: 110px;
+  font-size: 20px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.logout {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  opacity: 50%;
+}
+
+.active {
+  width: 100%;
+  background-color: rgba(217, 217, 217, 0.3);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 990px) {
+  .logout {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .nav {
+    display: none;
+  }
+}
