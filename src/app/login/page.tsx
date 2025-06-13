@@ -4,11 +4,13 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const router = useRouter();
 
   const loginFunction = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +27,10 @@ export default function Login() {
     });
     const token = res.headers.authorization;
     localStorage.setItem("accessToken", token);
+
+    if (res.status === 200) {
+      router.push("./main");
+    }
 
     console.log("login res:", res);
     // console.log(localStorage.getItem("accessToken"));

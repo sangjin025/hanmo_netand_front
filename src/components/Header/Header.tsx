@@ -45,7 +45,9 @@ export default function Header() {
         </Link>
       </nav>
       <div className={styles.controls}>
-        <button className={styles.logout}>로그인/회원가입</button>
+        <Link href="/login" className={styles.logout}>
+          로그인/회원가입
+        </Link>
         <button className={styles.hamburger}>
           <Image src="/images/hamburger.png" alt="" width={36} height={25} />
         </button>
