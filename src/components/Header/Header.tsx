@@ -36,7 +36,7 @@ export default function Header() {
           정기점검관리
         </Link>
         <Link
-          href="/issues"
+          href="/issuesList"
           className={`${styles.navItem} ${
             pathname === "/issues" ? styles.active : ""
           }`}
