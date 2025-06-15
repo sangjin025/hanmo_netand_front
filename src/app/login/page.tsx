@@ -33,7 +33,7 @@ export default function Login() {
     }
 
     console.log("login res:", res);
-    // console.log(localStorage.getItem("accessToken"));
+    console.log(localStorage.getItem("accessToken"));
   };
 
   return (
