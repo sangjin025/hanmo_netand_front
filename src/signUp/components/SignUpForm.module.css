@@ -1,0 +1,255 @@
+body {
+  font: Inter;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.inputGroup {
+  color: #B2B2B2;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #cccccc;
+  border-radius: 15px;
+  background-color: #fff;
+  width: 588px;
+  height: 250px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.inputGroup2 {
+  color: #B2B2B2;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #cccccc;
+  border-radius: 15px;
+  background-color: #fff;
+  width: 588px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.inputBox,
+.inputBox2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 60px;
+  padding: 0 20px;
+  background: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 0;
+}
+
+.inputBox:last-child,
+.inputBox2:last-child {
+  border-bottom: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.inputBox input,
+.inputBox2 input {
+  all: unset;
+  flex: 1;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.sideBtn {
+  font-size: 15px;
+  font-weight: bold;
+  color: #4D4D4D;
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sideBtn:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.icon,
+.icon_phone,
+.icon_lock,
+.icon_building {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon { width: 24px; height: 24px; }
+.icon_phone { width: 20px; height: 35px; }
+.icon_lock { width: 23px; height: 26px; }
+.icon_building { width: 22px; height: 30px; }
+
+
+.arrowBtn {
+  all: unset;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.arrowBtn:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+
+.arrowBtn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dropdownContainer {
+  position: relative;
+  width: 588px;
+}
+
+/* 📌 드롭다운 헤더 */
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  background-color: none;
+  border: none;
+  border-radius: 12px 12px 0 0;
+  border-bottom: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* 가운데 텍스트 (회사 구분) */
+.label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #b4b4b4;
+  margin-left: 12px;
+}
+
+.labelSelected {
+  color: #000000; /* 선택 시 검정 */
+}
+
+/* 📌 드롭다운 리스트 */
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: none;
+  border: 2px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin-top: 0;
+  z-index: 2;
+  color: #000000;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+  animation: dropdownOpen 0.2s ease-out;
+  transform-origin: top;
+  font-weight: bold;
+}
+
+/* 📌 촤르륵 효과 */
+@keyframes dropdownOpen {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.dropdownItem {
+  padding: 12px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.dropdownItem:hover {
+  background-color: #f2f2f2;
+}
+
+.iconRight {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.visible {
+  all: unset; /* ✅ 버튼 기본 스타일 완전 초기화 */
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visible img {
+  width: 40px;
+  height: 36px;
+  height: auto;
+  display: #9999;
+}
+
+.visible:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+
+/* 페이지 전체 배경/중앙 정렬용 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 1200px;
+  min-width: 1500px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 40px !important;
+  font-weight: bold !important;
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+input, button {
+  padding: 8px;
+  font-size: 16px;
+}
