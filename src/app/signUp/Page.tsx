@@ -1,7 +1,6 @@
-// src/signUp/components/Page.tsx
-import React from 'react';
-import SignUpForm from './components/SignUpForm';
-import styles from './components/SignUpForm.module.css';
+import React from "react";
+import SignUpForm from "./components/SignUpForm";
+import styles from "./components/SignUpForm.module.css";
 
 const Page = () => {
   return (

@@ -13,6 +13,8 @@ import arrowIcon from "../../assets/icons/Vector 1.png";
 import eyeOffIcon from "../../assets/icons/안보이게.png";
 import eyeOnIcon from "../../assets/icons/보이게.png"; // 눈 켠 상태 아이콘도 있어야 함
 
+// 이미지들 public/images 파일에 저장하고 img 태그 Image 태그로 바꾸기
+
 const SignUpForm = () => {
   const [form, setForm] = useState({
     email: "",
@@ -43,9 +45,9 @@ const SignUpForm = () => {
       <div className={styles.inputGroup}>
         <div className={styles.inputBox}>
           <Image
-            src="/images/signup/eye-off"
-            width={30}
-            height={30}
+            src="/images/signup/eye-off.png"
+            width={0}
+            height={0}
             alt="이메일"
             className={styles.icon}
           />
@@ -58,11 +60,11 @@ const SignUpForm = () => {
           <button className={styles.sideBtn}>인증</button>
         </div>
 
-        {/* <div className={styles.inputBox}>
-          <img src={checkboxIcon.src} alt="인증번호" className={styles.icon} />
+        <div className={styles.inputBox}>
+          {/* <img src={checkboxIcon.src} alt="인증번호" className={styles.icon} /> */}
           <input type="text" placeholder="인증 번호" />
           <button className={styles.sideBtn}>확인</button>
-        </div> */}
+        </div>
 
         {/* <div className={styles.inputBox}>
           <img src={lockIcon.src} alt="비밀번호" className={styles.icon_lock} />
