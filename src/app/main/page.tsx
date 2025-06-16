@@ -4,7 +4,6 @@ import ProfileCard from "./components/ProfileCard/page";
 import NoticeList from "./components/NoticeList/NoticeList";
 import MonthlySummary from "./components/MonthlySummary/page";
 import MonthlyCalendar from "./components/MonthlyCalendar/page";
-import { useState } from "react";
 
 export default function Main() {
   return (
@@ -23,5 +22,5 @@ export default function Main() {
         <MonthlyCalendar />
       </div>
     </main>
-  );4
+  );
 }
