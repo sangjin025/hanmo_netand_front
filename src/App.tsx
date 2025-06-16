@@ -1,6 +1,6 @@
 // src/App.tsx
 import React from 'react';
-import Page from './signUp/Page'; // ✅ Page.tsx 임포트
+import Page from './app/signUp/Page'; // ✅ Page.tsx 임포트
 
 import '@fontsource/inter';
 import '@fontsource/inter/300.css';
