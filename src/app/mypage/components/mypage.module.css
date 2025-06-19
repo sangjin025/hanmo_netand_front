@@ -1,0 +1,124 @@
+/* container & title (page.tsx에서 사용) */
+/* page.tsx 의 최상위 container */
+.container {
+  width: 1500px;
+  height: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;    /* ① 세로로 쌓기 */
+  /* 아이템들 사이에 일정 간격 주기 */
+  gap: 24px;                 /* ② 각 박스(카드)간 vertical 간격 */
+
+  /* 가로 중앙 정렬 */
+  align-items: center;       /* ③ 가로 축(center) 정렬 */
+  /* 전체 높이 가운데로 세로 중앙 정렬 하고 싶다면:
+     justify-content: center; */
+}
+
+
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+  color: black;
+}
+
+/* profile card */
+.profileCard {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  width: 464px;
+  height: 162px;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #eee;
+}
+.infoText {
+  margin-left: 16px;
+}
+.name {
+  font-size: 24px;
+  font-weight: 600;
+}
+.subText {
+  display: block;
+  margin-top: 4px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* buttons */
+.editBtn,
+.saveBtn,
+.cancelBtn {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+.editBtn,
+.saveBtn {
+  background-color: #4090f5;
+  color: #fff;
+}
+.cancelBtn {
+  background-color: #f2f2f2;
+  color: #333;
+}
+.actionGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.editBtn {
+  margin-bottom: 24px;
+}
+
+/* fields */
+.fieldGroup {
+  width: 464px;
+  height: 190px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.fieldRow {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.fieldRow.last {
+  border-bottom: none;
+}
+.fieldLabel {
+  width: 150px;
+  font-size: 18px;
+  color: #666;
+}
+.fieldValue,
+.fieldInput {
+  font-size: 18px;
+  color: #333;
+}
+.fieldValue {
+  flex: 1;
+}
+.fieldInput {
+  all: unset;
+  flex: 1;
+  padding: 4px 0;
+}
