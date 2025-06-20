@@ -1,9 +1,9 @@
 // app/mypage/mypage.tsx
 'use client';
+import Image from 'next/image'; 
 
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, ReactNode } from 'react';
 import styles from './mypage.module.css';
-
 
 // 사용자 정보 타입 정의
 interface UserInfo {
@@ -14,10 +14,42 @@ interface UserInfo {
 type FieldKey = keyof UserInfo;
 
 // 필드별 라벨 · 키 · input 타입 매핑
-const fields: { label: string; key: FieldKey; type: string }[] = [
-  { label: '이름', key: 'name', type: 'text' },
-  { label: '이메일', key: 'email', type: 'email' },
-  { label: '휴대전화 번호', key: 'phone', type: 'tel' },
+interface Field {
+  label: ReactNode;    // string → ReactNode
+  key: FieldKey;
+  type: string;
+}
+
+const fields: Field[] = [
+  {
+    label: (
+      <Image
+        src="/images/mypage/person_mp.png"
+        alt="이름"
+        width={26}
+        height={26}
+      />
+    ),
+    key: 'name',
+    type: 'text',
+  },
+  { label:(
+      <Image
+        src="/images/mypage/person_mp.png"
+        alt="이메일"
+        width={26}
+        height={26}
+      />
+    ),
+    key: 'email', type: 'email' },
+  { label:(
+      <Image
+        src="/images/mypage/phone_mp.png"
+        alt="전화번호"
+        width={20}
+        height={26}
+      />
+    ), key: 'phone', type: 'tel' },
 ];
 
 export default function MyPage() {
@@ -77,16 +109,19 @@ export default function MyPage() {
       )}
 
       {/* 정보 필드 */}
-      <div className={styles.fieldGroup}>
+        {/* 정보 필드 (편집 모드 시 edit 상태 클래스 추가) */}
+        <div
+          className={
+            editMode
+              ? `${styles.fieldGroup} ${styles.fieldGroupEdit}`       : styles.fieldGroup
+          }
+        >
+
         {fields.map(({ label, key, type }, idx) => (
           <div
             key={key}
             className={`${styles.fieldRow} ${idx === fields.length - 1 ? styles.last : ''}`}
           >
-            {/* 아이콘
-            {key === 'name' && <UserIcon className={styles.fieldIcon} />}
-            {key === 'email' && <Mail className={styles.fieldIcon} />}
-            {key === 'phone' && <Smartphone className={styles.fieldIcon} />} */}
 
             {/* 라벨 */}
             <span className={styles.fieldLabel}>{label}</span>
@@ -98,7 +133,14 @@ export default function MyPage() {
                 type={type}
                 value={form[key]}
                 onChange={handleChange}
-                className={styles.fieldInput}
+                //아매알 필드만 비활성화
+                disabled={key === 'email'}
+          
+               className={
+                  key === 'email'
+                    ? '${styles.fieldInput} ${styles.fieldInputDisabled}'
+                    : styles.fieldInput
+               }
               />
             ) : (
               <span className={styles.fieldValue}>{user[key]}</span>
@@ -106,6 +148,6 @@ export default function MyPage() {
           </div>
         ))}
       </div>
-    </>
+      </>
   );
 }

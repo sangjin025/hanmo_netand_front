@@ -52,7 +52,11 @@ export default function SignUpForm() {
       <div className={styles.inputGroup}>
         {/* 이메일 */}
         <div className={styles.inputBox}>
-          <Image src="/images/signup/person.png" width={24} height={24} alt="이메일" className={styles.icon}/>
+          <Image 
+                src="/images/signup/person.png" 
+                width={24} height={24} 
+                alt="이메일" 
+                className={styles.icon}/>
           <input
             type="email"
             name="email"
@@ -65,7 +69,11 @@ export default function SignUpForm() {
 
         {/* 인증번호 */}
         <div className={styles.inputBox}>
-          <Image src="/images/signup/checkbox.png" width={24} height={24} alt="인증번호" className={styles.icon}/>
+          <Image 
+                src="/images/signup/checkbox.png" 
+                width={24} height={24} 
+                alt="인증번호" 
+                className={styles.icon}/>
           <input
             type="text"
             name="code"
@@ -78,7 +86,11 @@ export default function SignUpForm() {
 
         {/* 비밀번호 */}
         <div className={styles.inputBox}>
-          <Image src="/images/signup/lock.png" width={24} height={24} alt="비밀번호" className={styles.icon}/>
+          <Image 
+                src="/images/signup/lock.png" 
+                width={24} height={24} 
+                alt="비밀번호" 
+                className={styles.icon}/>
           <input
             type={showPassword ? 'text' : 'password'}
             name="password"
@@ -98,7 +110,11 @@ export default function SignUpForm() {
 
         {/* 비밀번호 확인 */}
         <div className={styles.inputBox}>
-          <Image src="/images/signup/lock.png" width={24} height={24} alt="비밀번호 확인" className={styles.icon}/>
+          <Image 
+                src="/images/signup/lock.png" 
+                width={24} height={24} 
+                alt="비밀번호 확인" 
+                className={styles.icon}/>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
             name="confirmPassword"
@@ -121,7 +137,11 @@ export default function SignUpForm() {
       <div className={styles.inputGroup2}>
         {/* 이름 */}
         <div className={styles.inputBox2}>
-          <Image src="/images/signup/person.png" width={24} height={24} alt="이름" className={styles.icon}/>
+          <Image
+              src="/images/signup/person.png" 
+              width={24} height={24} 
+              alt="이름" 
+              className={styles.icon}/>
           <input
             type="text"
             name="name"
@@ -133,7 +153,11 @@ export default function SignUpForm() {
 
         {/* 휴대전화 */}
         <div className={styles.inputBox2}>
-          <Image src="/images/signup/phone.png" width={24} height={24} alt="휴대폰" className={styles.icon_phone}/>
+          <Image 
+                src="/images/signup/phone.png" 
+                width={24} height={24} 
+                alt="휴대폰" 
+                className={styles.icon_phone}/>
           <input
             type="text"
             name="phone"
@@ -145,7 +169,11 @@ export default function SignUpForm() {
 
         {/* 회사명 */}
         <div className={styles.inputBox2}>
-          <Image src="/images/signup/building.png" width={24} height={24} alt="회사명" className={styles.icon_building}/>
+          <Image 
+                src="/images/signup/building.png" 
+                width={24} height={24} 
+                alt="회사명" 
+                className={styles.icon_building}/>
           <input
             type="text"
             name="companyName"
@@ -158,17 +186,21 @@ export default function SignUpForm() {
         {/* 회사 구분 */}
         <div className={styles.dropdownContainer}>
           <div className={styles.dropdownHeader} onClick={() => setDropdownOpen(prev => !prev)}>
-            <Image src="/images/signup/building.png" width={24} height={24} alt="회사 구분" className={styles.icon_building}/>
+            <Image 
+                  src="/images/signup/building.png" 
+                  width={24} height={24} 
+                  alt="회사 구분" 
+                  className={styles.icon_building}/>
             <span className={`${styles.label} ${companyType ? styles.labelSelected : ''}`}>
               {companyType || '회사 구분'}
             </span>
             <button type="button" className={styles.arrowBtn}>
               <Image
-                src="/images/signup/arrow.png"
-                width={20}
-                height={20}
-                alt=""
-                style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'none' }}
+                  src="/images/signup/arrow.png"
+                  width={20}
+                  height={20}
+                  alt=""
+                  style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'none' }}
               />
               
             </button>
