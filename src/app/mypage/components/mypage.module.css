@@ -1,27 +1,89 @@
-/* page.tsx 최상위 래퍼 */
+/* ─── 레이아웃 ───────────────────────────────────────── */
 .container {
   width: 1500px;
-  margin: 60px auto;
-  padding: 0 20px;
+  margin-top: 0px;
+  display: flex;
+  min-height: calc(100vh - 120px);
+}
+.sidebar {
+  width: 318px;
+  background-color: #fff;
+  border-right: 2px solid #e5e5e5;
+}
+.logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.navItem,
+.navItemActive {
+  height: 48px;
+  line-height: 48px;
+  padding-left: 12px;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.navItemActive {
+  color: #414141;
+  background-color: #f4f4f4;
+  font-weight: bold;
+  box-shadow: 
+    inset 0px -4px 2px rgba(0, 0, 0, 0.1),   /* 아래쪽 안쪽 */
+    inset 4px 0px 2px rgba(0, 0, 0, 0.1);    /* 오른쪽 안쪽 */
+}
 
+.mainContent {
+  font-weight: bold;
+  color: black;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  padding-left: 20px;
 }
 
+/* 사이드바 상단의 골드 박스 */
+.sidebarHeader {
+  width: 100%;
+  height: 60px;                   /* 높이 조절 */
+  background-color: #D7C690;      /* 골드 컬러 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #414141;
+    box-shadow: 0 8 8px rgba(0, 0, 0, 0.1);   /* 오른쪽 안쪽 */
+}
+
+/* 프로필 사진 래퍼 */
+.sidebarProfile {
+  /* 남은 공간 만큼 세로 여유를 줘서 중앙에 배치 */
+  display: flex;
+  align-items: center;    /* 세로 중앙 정렬 */
+  justify-content: center;/* 가로 중앙 정렬 (선택) */
+  
+  /* 위아래 여백을 좀 더 줄/늘이고 싶으면 조정하세요 */
+  padding: 20px 0;
+}
+
+/* ─── 헤더 & 프로필 ─────────────────────────────────── */
 .title {
   font-size: 40px;
   font-weight: bold;
   color: #000;
   width: 464px;
   text-align: left;
-  margin: 0;
+  margin-top: 60px;
 }
-
-/* profile card */
 .profileCard {
-  font-weight: bold;
   display: flex;
   align-items: center;
   width: 464px;
@@ -30,8 +92,8 @@
   border: 2px solid #e5e5e5;
   border-radius: 15px;
   background-color: #fff;
+  font-weight: bold;
 }
-
 .profileText {
   margin-left: 16px;
 }
@@ -48,18 +110,14 @@
   color: #888;
 }
 
-/* mypage.module.css */
-
-/* 카드(464px)에 맞춘 버튼 래퍼 */
+/* ─── 버튼 ───────────────────────────────────────────── */
 .buttonWrapper {
-  width: 464px;                /* 카드와 동일 폭 */
+  width: 464px;
   display: flex;
-  justify-content: flex-start; /* 왼쪽 정렬 */
-  gap: 12px;                   /* 저장/취소 버튼 간격 */
-  margin: 0 0 24px;            /* 아래 여백 */
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
 }
-
-
 .editBtn,
 .saveBtn,
 .cancelBtn {
@@ -71,8 +129,6 @@
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  background-color: #0976ea;
-
 }
 .editBtn,
 .saveBtn {
@@ -88,7 +144,9 @@
   gap: 12px;
 }
 
+/* ─── 필드 박스 ───────────────────────────────────────── */
 .fieldGroup {
+  margin-bottom: 30px;
   width: 464px;
   border: 2px solid #bfbfbf;
   border-radius: 15px;
@@ -98,6 +156,8 @@
 .fieldGroupEdit {
   background-color: #fff;
 }
+
+/* ─── 각 행 ─────────────────────────────────────────── */
 .fieldRow {
   display: flex;
   align-items: center;
@@ -109,9 +169,14 @@
 .fieldRow.last {
   border-bottom: none;
 }
+
+/* 레이블(아이콘) */
 .fieldLabel {
   flex-shrink: 0;
+  width: 40px;
 }
+
+/* 값/인풋 공통 */
 .fieldValue,
 .fieldInput {
   all: unset;
@@ -120,13 +185,45 @@
   font-weight: bold;
   color: #696969;
 }
+
+/* 인풋 전용 */
 .fieldInput {
   background-color: #fff;
-  padding: 8px 12px;
   border-radius: 4px;
 }
 .fieldInputDisabled {
   background-color: #fff !important;
   color: #696969 !important;
   cursor: not-allowed;
+}
+
+/* SMS 버튼 */
+.smsBtn {
+  font-weight: bold;
+  font-size: 15px;
+  width: 41px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  margin-left: 8px;
+  color: #4d4d4d;
+}
+
+/* 확인 버튼 */
+.verifyBtn {
+  font-weight: bold;
+  font-size: 15px;
+  width: 41px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  margin-left: 8px;
+  color: #4d4d4d;
+}
+
+/* 인증번호 입력 위에 구분선, 간격/패딩 조정 */
+.fieldRow.divider {
+  border-top: 2px solid #bfbfbf;
+  gap: 8px;
+  padding-left: 19px;
 }

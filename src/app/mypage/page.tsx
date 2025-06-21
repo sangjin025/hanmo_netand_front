@@ -8,7 +8,6 @@ import MyPage from './components/mypage';
 export default function Page() {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>내 정보</h2>
       <MyPage />
     </div>
   );
