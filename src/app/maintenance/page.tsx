@@ -5,8 +5,8 @@ import styles from "./page.module.css";
 export default function Maintenance() {
   return (
     <div>
-      {/* <PostList /> */}
-      <PostCreate />
+      <PostList />
+      {/* <PostCreate /> */}
     </div>
   );
 }
