@@ -8,7 +8,7 @@
 .sidebar {
   width: 318px;
   background-color: #fff;
-  border-right: 2px solid #e5e5e5;
+  box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
 }
 .logo {
   text-align: center;
@@ -60,7 +60,8 @@
   font-size: 20px;
   font-weight: bold;
   color: #414141;
-    box-shadow: 0 8 8px rgba(0, 0, 0, 0.1);   /* 오른쪽 안쪽 */
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 20px -8px rgba(0,0,0,0.5);  
 }
 
 /* 프로필 사진 래퍼 */
@@ -146,7 +147,7 @@
 
 /* ─── 필드 박스 ───────────────────────────────────────── */
 .fieldGroup {
-  margin-bottom: 30px;
+  margin-bottom: 100px;
   width: 464px;
   border: 2px solid #bfbfbf;
   border-radius: 15px;

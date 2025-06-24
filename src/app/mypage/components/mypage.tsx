@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { useState, ChangeEvent, ReactNode } from 'react';
 import styles from './mypage.module.css';
+import Link from 'next/link';
 
 interface UserInfo {
   name: string;
@@ -109,8 +110,10 @@ export default function MyPage() {
         </div>
        
         <ul className={styles.navList}>
-          <li className={styles.navItemActive}>내 정보</li>
-          <li className={styles.navItem}>이슈 목록</li>
+                <li className={styles.navItemActive}>내 정보</li>
+       <li className={styles.navItem}>
+          <Link href="/mypage/issues">이슈 목록</Link>
+        </li>
         </ul>
       </aside>
 
