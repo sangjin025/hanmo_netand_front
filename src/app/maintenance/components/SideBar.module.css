@@ -43,9 +43,12 @@
 
 .active {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   /* color: #0070f3;  */
 >>>>>>> 2df8801 (feat(layout): app/maintenance/layout.tsx에 Sidebar 배치 및 children 렌더링 구조 추가)
+=======
+>>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
   /* border-bottom-color: #0070f3; */
   font-weight: bold;
   background-color: #d9d9d9;

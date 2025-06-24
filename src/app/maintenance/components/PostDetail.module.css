@@ -7,6 +7,7 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .titleSection {
   width: 100%;
   display: flex;
@@ -15,10 +16,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+=======
+>>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
 .title {
   font-size: 30px;
   width: 100%;
   font-weight: 600;
+<<<<<<< HEAD
+=======
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+>>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
 }
 
 .form {
@@ -33,6 +40,10 @@
   display: flex;
   flex-wrap: wrap;
   border: 1px solid rgba(0, 0, 0, 0.3);
+<<<<<<< HEAD
+=======
+  /* overflow: hidden; */
+>>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
   border-radius: 15px;
   margin-top: 40px;
 }
@@ -48,12 +59,21 @@
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+<<<<<<< HEAD
 .entries:nth-last-child(1),
 .entries:nth-last-child(2) {
   border-bottom: none;
 }
 
 .entries:nth-child(even) {
+=======
+.field:nth-last-child(1),
+.field:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.field:nth-child(even) {
+>>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
   border-right: none;
 }
 
