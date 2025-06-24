@@ -78,8 +78,8 @@
 /* ─── 헤더 & 프로필 ─────────────────────────────────── */
 .title {
   position: absolute;   
-  top:80px;     /* 창 맨 아래에서 20px 위 */
-  right: 170px;  
+  top:80px;   
+  right: 170px; 
   font-size: 40px;
   font-weight: bold;
   color: #000;
@@ -90,18 +90,23 @@
 /*이슈테이블*/
 .table {
   border-radius: 15px 15px 0 0;
-  margin-top: 250px;
-  border: 1px solid #bdbdbd;
+  margin-top: -90px;
   width: 80%;
   border-collapse: collapse;
   background-color: #ececec;
 }
 .table th,
 .table td {
-  border-radius: 15px 15px 0 0;
   padding: 8px;
   border: 2px solid #ddd;
   text-align: center;
+}
+.emptyRow{
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
 }
 .pagination {
   display: flex;
@@ -110,8 +115,9 @@
   margin-top: 200px;
 }
 .pagination button {
+  margin-top: -160px;
+  margin-bottom: 20px;
   padding: 4px 8px;
-  border: 1px solid #ccc;
   background: white;
   cursor: pointer;
 }
@@ -123,4 +129,41 @@
   background: #0070f3;
   color: white;
   border-color: #0070f3;
+}
+
+.searchContainer {
+  width: 680px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 150px 0; /* 위아래 16px 여백 */
+  border: 1px solid #d9d9d9;
+  border-radius: 15px;
+  overflow: hidden;
+  border-collapse: collapse;
+
+}
+
+.searchInput{
+  height: 45px;
+  width: 680px;
+}
+
+.searchSelect{
+  text-align: center;
+  border:0.5px solid #d9d9d9;
+  height: 46px;
+}
+
+.searchButton{
+  padding: 0px 10px;
+
+}
+
+/* 클릭 가능한 행 */
+.clickableRow {
+  cursor: pointer;
+}
+.clickableRow:hover {
+  background-color: #f5faff;
 }
