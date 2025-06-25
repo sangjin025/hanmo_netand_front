@@ -6,7 +6,6 @@ export interface InspectionSummary {
   inspectionDate: string;
   status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
   inspector: string;
-  id?: string;
 }
 
 export interface ListResponse {
@@ -20,22 +19,4 @@ export interface ListResponse {
     totalPages: number;
   };
   timestamp: number;
-}
-
-export interface DetailData {
-  inspectionId?: number;
-  companyName: string;
-  productName: string;
-  inspector: string;
-  inspectionDate: string; // or Date
-  nextInspectionDate: string;
-  inspectionHistory: string;
-  inspectionType: string;
-  status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
-  details: {
-    itemName: string;
-    systemCheck: string;
-    checkMethod: string;
-    checkResult: string;
-  }[];
 }
