@@ -10,8 +10,8 @@ export default function Maintenance() {
   return <PostList />;
 =======
   return (
-    // <PostList />
-    <PostDetail />
+    <PostList />
+    // <PostDetail />
   );
 >>>>>>> 2df8801 (feat(layout): app/maintenance/layout.tsx에 Sidebar 배치 및 children 렌더링 구조 추가)
 }
