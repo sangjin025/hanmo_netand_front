@@ -3,53 +3,46 @@
 import styles from "./PostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-interface PostData {
-  inspectionId: number;
-  createdAt: string;
-  companyName: string;
-  productName: string;
-  inspectionDate: string;
-  status: string;
-  inspector: string;
-}
+import SearchBar from "./SearchBar";
+import { InspectionSummary, ListResponse } from "./types";
 
 export default function PostList() {
-  const [postData, setPostData] = useState<PostData[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const POSTS_PER_PAGE = 8;
-  const totalPages = Math.ceil((postData?.length ?? 0) / POSTS_PER_PAGE);
+  const [list, setList] = useState<InspectionSummary[]>([]);
+  const [page, setPage] = useState(0);
+  const [size] = useState(8);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchList = async () => {
       const token = localStorage.getItem("accessToken");
 
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
-      console.log("API URL:", url);
-      // console.log("토큰:", token);
-
       try {
-        const response = await axios.get<{ data: PostData[] }>(url, {
+        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
+        console.log("API URL:", url);
+        const res = await axios.get<ListResponse>(url, {
           headers: {
             authorization: token,
           },
+          params: {
+            page,
+            size,
+            sort: [],
+          },
         });
-        console.log(response.data.data);
-        setPostData(response.data.data);
-        console.log("Response:", response);
+        setList(res.data.data.content);
+        setTotalPages(res.data.data.totalPages);
+        console.log(list);
       } catch (e) {
         console.log("에러: ", e);
       }
     };
-    fetchData();
-  }, []);
-
-  const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
-  const currentPosts = postData?.slice(startIdx, startIdx + POSTS_PER_PAGE);
+    fetchList();
+  }, [page, size]);
 
   return (
     <div className={styles.container}>
+      <span className={styles.title}> 정기점검 조회 </span>
+      <SearchBar />
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
@@ -62,11 +55,10 @@ export default function PostList() {
             <th>상태조회</th>
           </tr>
         </thead>
-        <tbody>
-          {/* <td>{postData?.[0]?.createdAt}</td> */}
-          {currentPosts?.map((post) => (
-            <tr>
-              <td>{post.createdAt}</td>
+        <tbody className={styles.tbody}>
+          {list?.map((post) => (
+            <tr key={post.inspectionId}>
+              <td>{post.createdAt?.split("T")[0]}</td>
               <td>{post.companyName}</td>
               <td>{post.productName}</td>
               <td>{post.inspectionDate}</td>
@@ -79,6 +71,17 @@ export default function PostList() {
           ))}
         </tbody>
       </table>
+      <div>
+        <button onClick={() => setPage((p) => Math.max(p - 1, 0))}>
+          ◀︎ 이전
+        </button>
+        <span style={{ margin: "0 8px" }}>
+          {page + 1} / {totalPages}
+        </span>
+        <button onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}>
+          다음 ▶︎
+        </button>
+      </div>
     </div>
   );
 }

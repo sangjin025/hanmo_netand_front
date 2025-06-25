@@ -4,7 +4,7 @@ import PostList from "./components/PostList";
 
 export default function Maintenance() {
   return (
-    // <PostList />
-    <PostDetail />
+    <PostList />
+    // <PostDetail />
   );
 }
