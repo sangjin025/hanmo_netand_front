@@ -3,6 +3,7 @@
 import styles from "./PostCreate.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { DetailData } from "./types";
 
 interface Detail {
   itemName: string;
@@ -11,23 +12,17 @@ interface Detail {
   checkResult: string;
 }
 
-interface InspectionForm {
-  inspector: string;
-  companyName: string;
-  inspectionDate: string;
-  nextInspectionDate: string;
-  productName: string;
-  inspectionHistory: string;
-  inspectionType: string;
-  status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
-  details: Detail[];
-}
-
 type Field = {
   label: string;
-  name: keyof InspectionForm | keyof Detail;
+  name: keyof DetailData | keyof Detail;
   type: "text" | "date";
   isDetail?: boolean;
+};
+
+type Props = {
+  initialData?: DetailData;
+  onSubmit?: (data: DetailData) => Promise<void>;
+  submitLabel?: string;
 };
 
 const fields: Field[] = [
@@ -43,68 +38,32 @@ const fields: Field[] = [
   { label: "점검 결과", name: "checkResult", type: "text", isDetail: true },
 ];
 
-export default function PostCreate() {
-  const [formData, setFormData] = useState<InspectionForm>({
-    companyName: "",
-    inspector: "",
-    inspectionDate: "",
-    nextInspectionDate: "",
-    productName: "",
-    inspectionHistory: "",
-    inspectionType: "",
-    status: "SCHEDULED",
-    // SCHEDULED : 예정된 것, COMPLETED: 완료 CANCELLED: 캔슬
-    details: [
-      {
-        itemName: "",
-        systemCheck: "",
-        checkMethod: "",
-        checkResult: "", // 점검 방법
-      },
-    ],
-  });
-  //   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
-  //   try {
-  //     // 1) 저장해둔 토큰 꺼내기
-  //     const token = localStorage.getItem("accessToken");
-  //     if (!token) {
-  //       console.error("토큰이 없습니다. 로그인 후 다시 시도해주세요.");
-  //       return;
-  //     }
-
-  //     const payload = {
-  //       companyName: "에스케이쉴더스(주)",
-  //       inspectionDate: "2025-06-20",
-  //       nextInspectionDate: "2025-07-20",
-  //       productName: "에스케이쉴더스DB",
-  //       inspectionHistory: "이력A",
-  //       inspectionType: "TYPE1",
-  //       status: "SCHEDULED",
-  //       details: [
-  //         {
-  //           itemName: "항목1",
-  //           systemCheck: "OK",
-  //           checkMethod: "방법1",
-  //           checkResult: "PASS",
-  //         },
-  //       ],
-  //     };
-
-  //     const res = await axios.post(url, payload, {
-  //       headers: {
-  //         Authorization: `${token}`,
-  //       },
-  //     });
-
-  //     console.log("성공:", res.data);
-  //   } catch (err: any) {
-  //     console.error("❌ 요청 실패");
-  //     console.error("Status:", err.response?.status);
-  //     console.error("Response:", err.response?.data);
-  //     console.error("Headers:", err.response?.headers);
-  //   }
-  // }
-  // testPayload();
+export default function PostCreate({
+  initialData,
+  onSubmit,
+  submitLabel = "등록",
+}: Props) {
+  const [formData, setFormData] = useState<DetailData>(
+    initialData ?? {
+      companyName: "",
+      inspector: "",
+      inspectionDate: "",
+      nextInspectionDate: "",
+      productName: "",
+      inspectionHistory: "",
+      inspectionType: "",
+      status: "SCHEDULED",
+      // SCHEDULED : 예정된 것, COMPLETED: 완료 CANCELLED: 캔슬
+      details: [
+        {
+          itemName: "",
+          systemCheck: "",
+          checkMethod: "",
+          checkResult: "", // 점검 방법
+        },
+      ],
+    }
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -123,13 +82,17 @@ export default function PostCreate() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const token = localStorage.getItem("accessToken");
-      if (!token) {
-        alert("로그인 후 시도해주세요.");
-        return;
-      }
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인 후 시도해주세요.");
+      return;
+    }
 
+    try {
+      if (onSubmit) {
+        await onSubmit(formData);
+        return; // 수정이 끝나면 함수 종료
+      }
       const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
       const res = await axios.post(url, formData, {
         headers: {
@@ -179,7 +142,7 @@ export default function PostCreate() {
           onChange={(e) => handleChange(e, true)}
         />
         <button type="submit" className={styles.submitBtn}>
-          등록
+          {submitLabel}
         </button>
       </form>
     </div>
