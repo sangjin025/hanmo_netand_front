@@ -4,6 +4,8 @@ import styles from "./PostDetail.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { DetailData } from "./types";
+import { useParams } from "next/navigation";
 
 type Entry = {
   label: string;
@@ -11,27 +13,11 @@ type Entry = {
   value?: string;
 };
 
-interface DetailData {
-  inspectionId: number;
-  companyName: string;
-  productName: string;
-  inspector: string;
-  inspectionDate: string; // or Date
-  nextInspectionDate: string;
-  inspectionHistory: string;
-  inspectionType: string;
-  status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
-  details: {
-    itemName: string;
-    systemCheck: string;
-    checkMethod: string;
-    checkResult: string;
-  }[];
-}
-
 export default function PostDetailPage() {
+  const { id } = useParams();
   const [detail, setDetail] = useState<DetailData | null>();
   const d = detail?.details[0];
+
   const entries: Entry[] = [
     { label: "회사명", name: "companyName", value: detail?.companyName },
     { label: "점검자", name: "inspector", value: detail?.inspector },
@@ -74,35 +60,35 @@ export default function PostDetailPage() {
   ];
 
   useEffect(() => {
+    if (!id || Array.isArray(id)) return;
     const fetchData = async () => {
-      const token = localStorage.getItem("accessToken");
-      if (!token) {
-        console.error("토큰이 없습니다.");
-        return;
-      }
-      const inspectionId = 26;
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${inspectionId}`;
-      console.log("API URL:", url);
-
       try {
+        const token = localStorage.getItem("accessToken");
+        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`;
+        if (!token) {
+          console.error("토큰이 없습니다.");
+          return;
+        }
         const response = await axios.get<{ data: DetailData }>(url, {
           headers: {
             authorization: token,
           },
         });
-        console.log(response.data.data);
         setDetail(response.data.data);
+        // console.log(response.data.data);
         console.log("Response:", response);
       } catch (e) {
-        console.log("에러: ", e);
+        console.log("상세조회 실패: ", e);
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>상세 조회</div>
+      <div className={styles.titleSection}>
+        <div className={styles.title}>상세 조회</div>
+      </div>
       <form className={styles.form}>
         <div className={styles.entriesWrapper}>
           {entries.map(({ label, name, value }) => (

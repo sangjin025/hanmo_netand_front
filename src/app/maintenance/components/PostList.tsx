@@ -3,8 +3,9 @@
 import styles from "./PostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SearchBar from "./SearchBar";
+import SearchBar, { FilterOption } from "./SearchBar";
 import { InspectionSummary, ListResponse } from "./types";
+import Link from "next/link";
 
 export default function PostList() {
   const [list, setList] = useState<InspectionSummary[]>([]);
@@ -12,37 +13,48 @@ export default function PostList() {
   const [size] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    const fetchList = async () => {
-      const token = localStorage.getItem("accessToken");
+  const [filter, setFilter] = useState<"전체" | "회사명" | "담당자명">("전체");
+  const [query, setQuery] = useState("");
 
-      try {
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
-        console.log("API URL:", url);
-        const res = await axios.get<ListResponse>(url, {
-          headers: {
-            authorization: token,
-          },
-          params: {
-            page,
-            size,
-            sort: [],
-          },
-        });
-        setList(res.data.data.content);
-        setTotalPages(res.data.data.totalPages);
-        console.log(list);
-      } catch (e) {
-        console.log("에러: ", e);
+  const fetchList = async () => {
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
+      console.log("API URL:", url);
+      const params: Record<string, any> = { page, size, sort: [] };
+      if (filter === "회사명") {
+        params.companyName = query;
+      } else if (filter === "담당자명") {
+        params.inspector = query;
       }
-    };
-    fetchList();
-  }, [page, size]);
 
+      const res = await axios.get<ListResponse>(url, {
+        headers: {
+          authorization: token,
+        },
+        params,
+      });
+      setList(res.data.data.content);
+      setTotalPages(res.data.data.totalPages);
+      console.log(list);
+    } catch (e) {
+      console.log("에러: ", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchList();
+  }, [page, size, filter, query]);
+
+  const handleSearch = (newFilter: typeof filter, newQuery: string) => {
+    setFilter(newFilter);
+    setQuery(newQuery);
+  };
   return (
     <div className={styles.container}>
       <span className={styles.title}> 정기점검 조회 </span>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
@@ -65,13 +77,15 @@ export default function PostList() {
               <td>{post.status}</td>
               <td>{post.inspector}</td>
               <td>
-                <button> 상태조회 </button>
+                <Link href={`/maintenance/${post.inspectionId}`}>
+                  <button className={styles.statusbtn}> 확인하기 </button>
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div>
+      <div className={styles.pagination}>
         <button onClick={() => setPage((p) => Math.max(p - 1, 0))}>
           ◀︎ 이전
         </button>

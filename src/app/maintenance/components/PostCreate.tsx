@@ -10,6 +10,7 @@ interface Detail {
   checkMethod: string;
   checkResult: string;
 }
+
 interface InspectionForm {
   inspector: string;
   companyName: string;
@@ -62,8 +63,6 @@ export default function PostCreate() {
       },
     ],
   });
-
-  // async function testPayload() {
   //   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
   //   try {
   //     // 1) 저장해둔 토큰 꺼내기
