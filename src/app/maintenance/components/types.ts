@@ -22,7 +22,7 @@ export interface ListResponse {
 }
 
 export interface DetailData {
-  inspectionId: number;
+  inspectionId?: number;
   companyName: string;
   productName: string;
   inspector: string;
