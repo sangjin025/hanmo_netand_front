@@ -14,7 +14,11 @@
 
 .table {
   width: 100%;
+<<<<<<< HEAD
   border-collapse: separate;
+=======
+  border-collapse: collapse;
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
   margin-top: 30px;
   border-spacing: 0;
 }

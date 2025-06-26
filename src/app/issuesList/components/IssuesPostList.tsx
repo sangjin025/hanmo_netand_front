@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import styles from "./IssuesPostList.module.css";
@@ -85,16 +86,31 @@ export default function IssueList() {
     setFilter(newFilter);
     setQuery(newQuery);
   };
+=======
+import styles from "./IssuesPostList.module.css";
+import SearchBar from "./SearchBar";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
+
+export default function IssuesPostList() {
+
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 
   return (
     <div className={styles.container}>
       <span className={styles.title}> 이슈 조회 </span>
+<<<<<<< HEAD
       <SearchBar onSearch={handleSearch} />
 
+=======
+      <SearchBar />
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
             <th>등록일자</th>
+<<<<<<< HEAD
             <th>제목</th>
             <th>회사명</th>
             <th>제품명</th>
@@ -133,6 +149,19 @@ export default function IssueList() {
           다음 ▶
         </button>
       </div>
+=======
+            <th>회사명</th>
+            <th>제품명</th>
+            <th>중요도</th>
+            <th>제목</th>
+            <th>처리상태</th>
+            <th>책임자</th>
+            <th>이슈유형</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
     </div>
   );
 }

@@ -5,11 +5,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { DetailData } from "./types";
 import { useParams } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 =======
 >>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
+=======
+import { DetailData } from "./types";
+import { useParams } from "next/navigation";
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 
 type Entry = {
   label: string;
@@ -17,6 +22,7 @@ type Entry = {
   value?: string;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 type Props = {
   data: DetailData;
@@ -53,10 +59,17 @@ interface DetailData {
   }[];
 }
 
+=======
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 export default function PostDetailPage() {
+  const { id } = useParams();
   const [detail, setDetail] = useState<DetailData | null>();
   const d = detail?.details[0];
+<<<<<<< HEAD
 >>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
+=======
+
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
   const entries: Entry[] = [
     { label: "회사명", name: "companyName", value: detail?.companyName },
     { label: "점검자", name: "inspector", value: detail?.inspector },
@@ -100,6 +113,7 @@ export default function PostDetailPage() {
 
   useEffect(() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (!id || Array.isArray(id)) return;
     const fetchData = async () => {
       try {
@@ -110,23 +124,27 @@ export default function PostDetailPage() {
           return;
         }
 =======
+=======
+    if (!id || Array.isArray(id)) return;
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
     const fetchData = async () => {
-      const token = localStorage.getItem("accessToken");
-      if (!token) {
-        console.error("토큰이 없습니다.");
-        return;
-      }
-      const inspectionId = 26;
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${inspectionId}`;
-      console.log("API URL:", url);
-
       try {
+<<<<<<< HEAD
 >>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
+=======
+        const token = localStorage.getItem("accessToken");
+        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`;
+        if (!token) {
+          console.error("토큰이 없습니다.");
+          return;
+        }
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
         const response = await axios.get<{ data: DetailData }>(url, {
           headers: {
             authorization: token,
           },
         });
+<<<<<<< HEAD
 <<<<<<< HEAD
         setDetail(response.data.data);
         // console.log(response.data.data);
@@ -148,19 +166,28 @@ export default function PostDetailPage() {
       </div>
 =======
         console.log(response.data.data);
+=======
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
         setDetail(response.data.data);
+        // console.log(response.data.data);
         console.log("Response:", response);
       } catch (e) {
-        console.log("에러: ", e);
+        console.log("상세조회 실패: ", e);
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.container}>
+<<<<<<< HEAD
       <div className={styles.title}>상세 조회</div>
 >>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
+=======
+      <div className={styles.titleSection}>
+        <div className={styles.title}>상세 조회</div>
+      </div>
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
       <form className={styles.form}>
         <div className={styles.entriesWrapper}>
           {entries.map(({ label, name, value }) => (

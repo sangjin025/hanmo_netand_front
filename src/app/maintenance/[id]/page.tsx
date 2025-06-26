@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -69,4 +70,10 @@ export default function MaintenanceDetailPage() {
       readOnly={true}
     />
   );
+=======
+import PostDetail from "../components/PostDetail";
+
+export default function MaintenanceDetailPage() {
+  return <PostDetail />;
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 }

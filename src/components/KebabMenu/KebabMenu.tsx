@@ -26,6 +26,7 @@ export default function KebabMenu({ onEdit, onDelete }: Props) {
         "
         />
       </button>
+<<<<<<< HEAD
       {open && (
         <div className={styles.dropdown}>
           <button className={styles.item} onClick={onEdit}>
@@ -43,6 +44,8 @@ export default function KebabMenu({ onEdit, onDelete }: Props) {
           </button>
         </div>
       )}
+=======
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
     </div>
   );
 }

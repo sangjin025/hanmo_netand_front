@@ -4,6 +4,7 @@ import styles from "./PostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import SearchBar, { FilterOption } from "./SearchBar";
 import { InspectionSummary, ListResponse } from "./types";
 import Link from "next/link";
@@ -11,6 +12,11 @@ import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { InspectionSummary, ListResponse } from "./types";
 >>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
+=======
+import SearchBar, { FilterOption } from "./SearchBar";
+import { InspectionSummary, ListResponse } from "./types";
+import Link from "next/link";
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 
 export default function PostList() {
   const [list, setList] = useState<InspectionSummary[]>([]);
@@ -87,34 +93,48 @@ export default function PostList() {
   }, [page, size, filter, query]);
 =======
 
-  useEffect(() => {
-    const fetchList = async () => {
-      const token = localStorage.getItem("accessToken");
+  const [filter, setFilter] = useState<"전체" | "회사명" | "담당자명">("전체");
+  const [query, setQuery] = useState("");
 
-      try {
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
-        console.log("API URL:", url);
-        const res = await axios.get<ListResponse>(url, {
-          headers: {
-            authorization: token,
-          },
-          params: {
-            page,
-            size,
-            sort: [],
-          },
-        });
-        setList(res.data.data.content);
-        setTotalPages(res.data.data.totalPages);
-        console.log(list);
-      } catch (e) {
-        console.log("에러: ", e);
+  const fetchList = async () => {
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
+      console.log("API URL:", url);
+      const params: Record<string, any> = { page, size, sort: [] };
+      if (filter === "회사명") {
+        params.companyName = query;
+      } else if (filter === "담당자명") {
+        params.inspector = query;
       }
+<<<<<<< HEAD
     };
     fetchList();
   }, [page, size]);
 >>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
 
+=======
+
+      const res = await axios.get<ListResponse>(url, {
+        headers: {
+          authorization: token,
+        },
+        params,
+      });
+      setList(res.data.data.content);
+      setTotalPages(res.data.data.totalPages);
+      console.log(list);
+    } catch (e) {
+      console.log("에러: ", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchList();
+  }, [page, size, filter, query]);
+
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
   const handleSearch = (newFilter: typeof filter, newQuery: string) => {
     setFilter(newFilter);
     setQuery(newQuery);
@@ -123,10 +143,14 @@ export default function PostList() {
     <div className={styles.container}>
       <span className={styles.title}> 정기점검 조회 </span>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <SearchBar onSearch={handleSearch} />
 =======
       <SearchBar />
 >>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
+=======
+      <SearchBar onSearch={handleSearch} />
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
@@ -158,10 +182,14 @@ export default function PostList() {
         </tbody>
       </table>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className={styles.pagination}>
 =======
       <div>
 >>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
+=======
+      <div className={styles.pagination}>
+>>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
         <button onClick={() => setPage((p) => Math.max(p - 1, 0))}>
           ◀︎ 이전
         </button>
