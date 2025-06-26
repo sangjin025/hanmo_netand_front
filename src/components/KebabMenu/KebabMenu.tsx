@@ -27,6 +27,9 @@ export default function KebabMenu({ onEdit, onDelete }: Props) {
         />
       </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
       {open && (
         <div className={styles.dropdown}>
           <button className={styles.item} onClick={onEdit}>
@@ -44,8 +47,11 @@ export default function KebabMenu({ onEdit, onDelete }: Props) {
           </button>
         </div>
       )}
+<<<<<<< HEAD
 =======
 >>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
+=======
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
     </div>
   );
 }

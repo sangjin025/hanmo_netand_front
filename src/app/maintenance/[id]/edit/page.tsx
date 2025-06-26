@@ -51,10 +51,21 @@ export default function EditInspectionPage() {
   if (!initialData) return <div>로딩 중…</div>;
 
   return (
+<<<<<<< HEAD
     <PostCreate
       initialData={initialData}
       onSubmit={handleUpdate}
       submitLabel="수정"
     />
+=======
+    <>
+      <h1>정기점검 수정</h1>
+      <PostCreate
+        initialData={initialData}
+        onSubmit={handleUpdate}
+        submitLabel="수정"
+      />
+    </>
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
   );
 }

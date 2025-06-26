@@ -7,6 +7,7 @@ import Link from "next/link";
 <<<<<<< HEAD
 <<<<<<< HEAD
 import { DetailData } from "./types";
+<<<<<<< HEAD
 import { useParams } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 =======
@@ -15,6 +16,10 @@ import KebabMenu from "@/components/KebabMenu/KebabMenu";
 import { DetailData } from "./types";
 import { useParams } from "next/navigation";
 >>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
+=======
+import { useParams, useRouter } from "next/navigation";
+import KebabMenu from "@/components/KebabMenu/KebabMenu";
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
 
 type Entry = {
   label: string;
@@ -24,6 +29,9 @@ type Entry = {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
 type Props = {
   data: DetailData;
   onEdit: () => void;
@@ -32,11 +40,20 @@ type Props = {
 };
 
 export default function PostDetailPage({
+<<<<<<< HEAD
   onEdit,
   onDelete,
 }: // readOnly = false,
 Props) {
+=======
+  data,
+  onEdit,
+  onDelete,
+  readOnly = false,
+}: Props) {
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
   const { id } = useParams();
+  const router = useRouter();
   const [detail, setDetail] = useState<DetailData | null>();
   const d = detail?.details[0];
 

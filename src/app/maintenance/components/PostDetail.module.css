@@ -69,6 +69,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .entries:nth-last-child(1),
 .entries:nth-last-child(2) {
   border-bottom: none;
@@ -83,6 +84,14 @@
 
 .field:nth-child(even) {
 >>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
+=======
+.entries:nth-last-child(1),
+.entries:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.entries:nth-child(even) {
+>>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
   border-right: none;
 }
 
