@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { DetailData } from "./types";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import KebabMenu from "@/components/KebabMenu/KebabMenu";
 
 type Entry = {
   label: string;
@@ -13,8 +14,21 @@ type Entry = {
   value?: string;
 };
 
-export default function PostDetailPage() {
+type Props = {
+  data: DetailData;
+  onEdit: () => void;
+  onDelete: () => void;
+  readOnly?: boolean;
+};
+
+export default function PostDetailPage({
+  data,
+  onEdit,
+  onDelete,
+  readOnly = false,
+}: Props) {
   const { id } = useParams();
+  const router = useRouter();
   const [detail, setDetail] = useState<DetailData | null>();
   const d = detail?.details[0];
 
@@ -88,6 +102,9 @@ export default function PostDetailPage() {
     <div className={styles.container}>
       <div className={styles.titleSection}>
         <div className={styles.title}>상세 조회</div>
+        <div>
+          <KebabMenu onEdit={onEdit} onDelete={onDelete} />
+        </div>
       </div>
       <form className={styles.form}>
         <div className={styles.entriesWrapper}>

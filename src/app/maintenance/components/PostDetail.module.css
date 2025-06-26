@@ -49,12 +49,12 @@
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.field:nth-last-child(1),
-.field:nth-last-child(2) {
+.entries:nth-last-child(1),
+.entries:nth-last-child(2) {
   border-bottom: none;
 }
 
-.field:nth-child(even) {
+.entries:nth-child(even) {
   border-right: none;
 }
 

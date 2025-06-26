@@ -26,6 +26,23 @@ export default function KebabMenu({ onEdit, onDelete }: Props) {
         "
         />
       </button>
+      {open && (
+        <div className={styles.dropdown}>
+          <button className={styles.item} onClick={onEdit}>
+            ✏️ 수정하기
+          </button>
+          <button className={styles.item} onClick={onDelete}>
+            🗑️ 삭제하기
+          </button>
+          <button
+            className={styles.closeBtn}
+            onClick={() => setOpen(false)}
+            aria-label="메뉴 닫기"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 }
