@@ -21,15 +21,23 @@
     "@fullcalendar/interaction": "^6.1.18",
     "@fullcalendar/react": "^6.1.18",
     "axios": "^1.9.0",
+<<<<<<< HEAD
 >>>>>>> c1f4526 (병합)
     "next": "^15.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+=======
+    "jwt-decode": "^4.0.0",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+>>>>>>> cf4932a (정기점검: PostCreate 컴포넌트 리팩토링 ( 작성자에 로그인한 회원 자동 기입 ))
     "react-paginate": "^8.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
