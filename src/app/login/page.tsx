@@ -31,7 +31,6 @@ export default function Login() {
     if (res.status === 200) {
       router.push("./main");
     }
-
     console.log("login res:", res);
     console.log(localStorage.getItem("accessToken"));
   };

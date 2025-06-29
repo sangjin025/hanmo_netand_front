@@ -4,6 +4,7 @@ import styles from "./PostCreate.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { DetailData } from "./types";
+import { useRouter } from "next/navigation";
 
 interface Detail {
   itemName: string;
@@ -17,6 +18,7 @@ type Field = {
   name: keyof DetailData | keyof Detail;
   type: "text" | "date";
   isDetail?: boolean;
+  readOnly?: boolean;
 };
 
 type Props = {
@@ -27,7 +29,7 @@ type Props = {
 
 const fields: Field[] = [
   { label: "회사명", name: "companyName", type: "text" },
-  { label: "점검자", name: "inspector", type: "text" },
+  { label: "점검자", name: "inspector", type: "text", readOnly: true },
   { label: "점검일자", name: "inspectionDate", type: "date" },
   { label: "다음 점검일자", name: "nextInspectionDate", type: "date" },
   { label: "제품명", name: "productName", type: "text" },
@@ -65,6 +67,28 @@ export default function PostCreate({
     }
   );
 
+  const router = useRouter();
+
+  // 작성자에 로그인한 회원 이름 자동으로 넣는 로직
+  useEffect(() => {
+    const fetchMe = async () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) return;
+
+      try {
+        const res = await axios.get<{ data: { name: string } }>(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/users/me`,
+          { headers: { authorization: token } }
+        );
+        const { name } = res.data.data;
+        setFormData((prev) => ({ ...prev, inspector: name }));
+      } catch (err) {
+        console.error("내 정보 조회 실패:", err);
+      }
+    };
+    fetchMe();
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     isDetail: boolean
@@ -91,6 +115,7 @@ export default function PostCreate({
     try {
       if (onSubmit) {
         await onSubmit(formData);
+        router.push("/maintenance");
         return; // 수정이 끝나면 함수 종료
       }
       const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
@@ -99,21 +124,19 @@ export default function PostCreate({
           Authorization: `${token}`,
         },
       });
-
-      console.log("등록 성공: ", res.data);
+      router.push("/maintenance");
     } catch (err: any) {
+      console.error("등록 실패:", err.response?.status, err.response?.data);
       console.error("❌ 등록 실패");
-      console.error("Status:", err.response?.status);
-      console.error("Response:", err.response?.data);
-      console.error("Headers:", err.response?.headers);
     }
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>정기점검 등록</div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.fieldWrapper}>
-          {fields.map(({ label, name, type, isDetail }) => (
+          {fields.map(({ label, name, type, isDetail, readOnly }) => (
             <div key={name} className={styles.field}>
               <label className={styles.label} htmlFor={name}>
                 {label}
@@ -130,6 +153,7 @@ export default function PostCreate({
                 onChange={(e) => handleChange(e, !!isDetail)}
                 className={styles.input}
                 placeholder={label}
+                readOnly={name === "inspector" || readOnly}
               />
             </div>
           ))}
