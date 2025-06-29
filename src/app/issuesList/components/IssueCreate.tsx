@@ -167,51 +167,72 @@ export default function IssueCreate({
           {submitLabel}
 =======
 import styles from "./IssueCreate.module.css";
-
-interface Detail {
-  itemName: string;
-  systemCheck: string;
-  checkMethod: string;
-  checkResult: string;
-}
+import axios from "axios";
 
 interface InspectionForm {
-  inspector: string;
-  companyName: string;
-  inspectionDate: string;
-  nextInspectionDate: string;
-  productName: string;
-  inspectionHistory: string;
-  inspectionType: string;
-  status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
-  details: Detail[];
+  title: string; // 제목
+  priority: "URGENT"; // 중요도
+  status: "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"; // 이슈상태
+  issueType: "BUG" | "INQUIRY" | "FEATURE" | "ETC"; // 값 아직 모름 // 이슈 유형
+  companyId: string; // 회사명
+  productCode: string; // 제품명
+  inspector: string; // 담당자배정
+  dueDate: Date; // 해결기한
+  description: string; // 점검방법?
 }
 
 type Field = {
   label: string;
-  name: keyof InspectionForm | keyof Detail;
+  name: keyof InspectionForm;
   type: "text" | "date" | "select";
   options?: string[];
-  isDetail?: boolean;
 };
 
 export default function IssueCreate() {
   const fields: Field[] = [
-    { label: "제목", name: "companyName", type: "text" },
+    { label: "제목", name: "title", type: "text" },
     {
       label: "중요도",
-      name: "inspector",
+      name: "priority",
       type: "select",
       options: ["긴급", "즉시", "높음", "보통", "낮음"],
     },
-    { label: "이슈상태", name: "inspectionDate", type: "text" },
-    { label: "이슈유형", name: "nextInspectionDate", type: "text" },
-    { label: "회사명", name: "productName", type: "text" },
-    { label: "제품명", name: "inspectionHistory", type: "text" },
-    { label: "담당자배정", name: "inspectionType", type: "text" },
-    { label: "해결기한", name: "itemName", type: "date", isDetail: true },
-    // { label: "점검방법", name: "systemCheck", type: "text", isDetail: true },
+    { label: "이슈상태", name: "status", type: "text" },
+    { label: "이슈유형", name: "issueType", type: "text" },
+    { label: "회사명", name: "companyId", type: "text" },
+    { label: "제품명", name: "productCode", type: "text" },
+    { label: "담당자배정", name: "inspector", type: "text" },
+    { label: "해결기한", name: "dueDate", type: "date" },
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인 후 시도해주세요.");
+      return;
+    }
+
+    try {
+      // if (onSubmit) {
+      //   await onSubmit(formData);
+      //   return; // 수정이 끝나면 함수 종료
+      // }
+      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections`;
+      const res = await axios.post(url, formData, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      console.log("등록 성공: ", res.data);
+    } catch (err: any) {
+      console.error("❌ 등록 실패");
+      console.error("Status:", err.response?.status);
+      console.error("Response:", err.response?.data);
+      console.error("Headers:", err.response?.headers);
+    }
+  };
 
   return (
     <div className={styles.container}>
