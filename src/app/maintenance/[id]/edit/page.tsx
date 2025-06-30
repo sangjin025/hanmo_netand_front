@@ -51,13 +51,10 @@ export default function EditInspectionPage() {
   if (!initialData) return <div>로딩 중…</div>;
 
   return (
-    <>
-      <h1>정기점검 수정</h1>
-      <PostCreate
-        initialData={initialData}
-        onSubmit={handleUpdate}
-        submitLabel="수정"
-      />
-    </>
+    <PostCreate
+      initialData={initialData}
+      onSubmit={handleUpdate}
+      submitLabel="수정"
+    />
   );
 }

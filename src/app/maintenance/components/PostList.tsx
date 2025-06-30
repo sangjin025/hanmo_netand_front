@@ -18,10 +18,8 @@ export default function PostList() {
 
   const fetchList = async () => {
     const token = localStorage.getItem("accessToken");
-
     try {
       const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
-      console.log("API URL:", url);
       const params: Record<string, any> = { page, size, sort: [] };
       if (filter === "회사명") {
         params.companyName = query;
@@ -37,7 +35,6 @@ export default function PostList() {
       });
       setList(res.data.data.content);
       setTotalPages(res.data.data.totalPages);
-      console.log(list);
     } catch (e) {
       console.log("에러: ", e);
     }

@@ -33,7 +33,6 @@
   display: flex;
   flex-wrap: wrap;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  /* overflow: hidden; */
   border-radius: 15px;
   margin-top: 40px;
 }
