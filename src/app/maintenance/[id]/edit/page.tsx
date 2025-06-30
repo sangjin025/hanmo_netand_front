@@ -52,11 +52,15 @@ export default function EditInspectionPage() {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 16da1b9 (fix: 정기점검(maintenance) 컴포넌트 라우팅 및 스타일 수정)
     <PostCreate
       initialData={initialData}
       onSubmit={handleUpdate}
       submitLabel="수정"
     />
+<<<<<<< HEAD
 =======
     <>
       <h1>정기점검 수정</h1>
@@ -67,5 +71,7 @@ export default function EditInspectionPage() {
       />
     </>
 >>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
+=======
+>>>>>>> 16da1b9 (fix: 정기점검(maintenance) 컴포넌트 라우팅 및 스타일 수정)
   );
 }

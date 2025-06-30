@@ -16,6 +16,7 @@ export default function MaintenanceDetailPage() {
   const router = useRouter();
   const [detail, setDetail] = useState<DetailData | null>(null);
 
+<<<<<<< HEAD
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
     const fetchData = async () => {
@@ -90,6 +91,8 @@ export default function MaintenanceDetailPage() {
   const [detail, setDetail] = useState<DetailData | null>(null);
 
   // 상세 데이터 불러오기
+=======
+>>>>>>> 16da1b9 (fix: 정기점검(maintenance) 컴포넌트 라우팅 및 스타일 수정)
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
     const fetchData = async () => {
@@ -124,7 +127,6 @@ export default function MaintenanceDetailPage() {
   const handleEdit = () => {
     if (!id) return;
     router.push(`/maintenance/${id}/edit`);
-    // 수정 페이지로 이동
   };
 
   const handleDelete = async () => {

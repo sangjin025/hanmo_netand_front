@@ -13,18 +13,18 @@ interface Detail {
   checkResult: string;
 }
 
+type Props = {
+  initialData?: DetailData;
+  onSubmit?: (data: DetailData) => Promise<void>;
+  submitLabel?: string;
+};
+
 type Field = {
   label: string;
   name: keyof DetailData | keyof Detail;
   type: "text" | "date";
   isDetail?: boolean;
   readOnly?: boolean;
-};
-
-type Props = {
-  initialData?: DetailData;
-  onSubmit?: (data: DetailData) => Promise<void>;
-  submitLabel?: string;
 };
 
 const fields: Field[] = [
@@ -45,6 +45,7 @@ export default function PostCreate({
   onSubmit,
   submitLabel = "등록",
 }: Props) {
+  const router = useRouter();
   const [formData, setFormData] = useState<DetailData>(
     initialData ?? {
       companyName: "",
@@ -66,8 +67,6 @@ export default function PostCreate({
       ],
     }
   );
-
-  const router = useRouter();
 
   // 작성자에 로그인한 회원 이름 자동으로 넣는 로직
   useEffect(() => {
@@ -133,7 +132,9 @@ export default function PostCreate({
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>정기점검 등록</div>
+      <div className={styles.title}>
+        {submitLabel === "등록" ? "정기점검 등록" : "정기점검 수정"}
+      </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.fieldWrapper}>
           {fields.map(({ label, name, type, isDetail, readOnly }) => (
