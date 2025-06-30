@@ -31,12 +31,14 @@ export default function NoticeList({
       <div className={styles.title}>주요알림</div>
       <div className={styles.noticeBoxes}>
         <div className={styles.noticeBox}>
-          {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+          <div style={{ fontWeight: 600 }}>
+            {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+          </div>
         </div>
         {currentItems.map((n) => (
           <div
             key={n.notificationId}
-            className={styles.noticeBox}
+            className={`${styles.noticeBox} ${styles.noticeBox2}`}
             onClick={() => markAsRead(n.notificationId)}
           >
             {`>> ${n.content} ${n.targetId}`}

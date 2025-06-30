@@ -55,6 +55,7 @@ body {
   background: none;
   border: none;
   font-size: 24px;
+  font-weight: 600;
 }
 
 .fc .fc-button.fc-prev-button,
@@ -68,4 +69,5 @@ body {
   height: 150px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }

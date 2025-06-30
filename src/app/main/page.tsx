@@ -103,8 +103,10 @@ export default function Main() {
       setNotifications((prev) =>
         prev.map((n) => (n.notificationId === id ? { ...n, isRead: true } : n))
       );
+      alert("알람을 읽음 처리 했습니다.");
     } catch (err) {
       console.error("❌ 읽음 처리 실패:", err);
+      alert("알람을 읽음 처리하지 못했습니다.");
     }
   };
 
@@ -119,7 +121,7 @@ export default function Main() {
 
   const calendarEvents = inspectionDates.map(({ id, nextInspectionDate }) => ({
     id: String(id),
-    title: "정기점검",
+    title: `${id}번 점검`,
     date: nextInspectionDate,
     color: getRandomColor(),
   }));
