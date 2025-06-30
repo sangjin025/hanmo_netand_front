@@ -171,10 +171,14 @@ export default function Main() {
         prev.map((n) => (n.notificationId === id ? { ...n, isRead: true } : n))
       );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7985a1f (feat: 메인페이지 CSS 일부 개선)
       alert("알람을 읽음 처리 했습니다.");
     } catch (err) {
       console.error("❌ 읽음 처리 실패:", err);
       alert("알람을 읽음 처리하지 못했습니다.");
+<<<<<<< HEAD
     }
   };
 
@@ -198,6 +202,8 @@ export default function Main() {
     } catch (err) {
       console.error("❌ 읽음 처리 실패:", err);
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+>>>>>>> 7985a1f (feat: 메인페이지 CSS 일부 개선)
     }
   };
 
@@ -213,10 +219,14 @@ export default function Main() {
   const calendarEvents = inspectionDates.map(({ id, nextInspectionDate }) => ({
     id: String(id),
 <<<<<<< HEAD
+<<<<<<< HEAD
     title: `${id}번 점검`,
 =======
     title: "정기점검",
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+    title: `${id}번 점검`,
+>>>>>>> 7985a1f (feat: 메인페이지 CSS 일부 개선)
     date: nextInspectionDate,
     color: getRandomColor(),
   }));

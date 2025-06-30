@@ -43,15 +43,21 @@ export default function NoticeList({
       <div className={styles.noticeBoxes}>
         <div className={styles.noticeBox}>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div style={{ fontWeight: 600 }}>
             {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
 =======
           {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+=======
+          <div style={{ fontWeight: 600 }}>
+            {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+          </div>
+>>>>>>> 7985a1f (feat: 메인페이지 CSS 일부 개선)
         </div>
         {currentItems.map((n) => (
           <div
             key={n.notificationId}
-            className={styles.noticeBox}
+            className={`${styles.noticeBox} ${styles.noticeBox2}`}
             onClick={() => markAsRead(n.notificationId)}
           >
             {`>> ${n.content} ${n.targetId}`}
