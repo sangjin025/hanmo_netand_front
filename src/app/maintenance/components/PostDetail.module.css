@@ -1,0 +1,92 @@
+.container {
+  width: 700px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-size: 30px;
+  width: 100%;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.entriesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  margin-top: 40px;
+}
+
+.entries {
+  flex: 1 0 calc(50% - 1rem); /* 가로 50% 빼기 열 간격 절반 */
+  display: flex;
+  width: 350px;
+  height: 70px;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.entries:nth-last-child(1),
+.entries:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.entries:nth-child(even) {
+  border-right: none;
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #666;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 50%;
+}
+
+.postDetail {
+  width: 100%;
+  height: 220px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+
+  padding: 10px;
+}
+
+.submitBtn {
+  width: 175px;
+  height: 42px;
+  background-color: #0976ea;
+  opacity: 90%;
+  color: white;
+  border-radius: 15px;
+}
