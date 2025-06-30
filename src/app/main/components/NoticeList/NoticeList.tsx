@@ -8,17 +8,27 @@ interface NoticeListProps {
   notifications: Notification[];
   inspectionDates: InspectionDate[];
   markAsRead: (notificationId: number) => void;
+<<<<<<< HEAD
   deleteNotification: (notificationId: number) => void;
+=======
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
   onPageChange: (selectedPage: number) => void;
   currentPage: number;
 }
 
 export default function NoticeList({
   notifications,
+<<<<<<< HEAD
   currentPage,
   onPageChange,
   markAsRead,
   deleteNotification,
+=======
+  inspectionDates,
+  currentPage,
+  onPageChange,
+  markAsRead,
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
 }: NoticeListProps) {
   const ITEMS_PER_PAGE = 4;
 
@@ -32,9 +42,38 @@ export default function NoticeList({
       <div className={styles.title}>주요알림</div>
       <div className={styles.noticeBoxes}>
         <div className={styles.noticeBox}>
+<<<<<<< HEAD
           <div style={{ fontWeight: 600 }}>
             {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+=======
+          {`>> 미확인 알림이 ${unreadCount}건 있습니다.`}
+        </div>
+        {currentItems.map((n) => (
+          <div
+            key={n.notificationId}
+            className={styles.noticeBox}
+            onClick={() => markAsRead(n.notificationId)}
+          >
+            {`>> ${n.content} ${n.targetId}`}
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
           </div>
+        ))}
+        {currentItems.length < ITEMS_PER_PAGE &&
+          Array(ITEMS_PER_PAGE - currentItems.length)
+            .fill(0)
+            .map((_, i) => <div key={i} className={styles.noticeBox} />)}
+        <div className={styles.paginationWrapper}>
+          <ReactPaginate
+            pageCount={pageCount}
+            onPageChange={({ selected }) => onPageChange(selected)}
+            forcePage={currentPage}
+            previousLabel="<"
+            nextLabel=">"
+            containerClassName={styles.pagination}
+            pageClassName={styles.page}
+            activeClassName={styles.activePage}
+            disabledClassName={styles.disabled}
+          />
         </div>
         {currentItems.map((n) => (
           <div

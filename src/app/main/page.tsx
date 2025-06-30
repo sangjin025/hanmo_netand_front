@@ -2,8 +2,13 @@
 import styles from "./page.module.css";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import NoticeList from "./components/NoticeList/NoticeList";
+<<<<<<< HEAD
 import MonthlySummary from "./components/MonthlySummary/MonthlySummary";
 import MonthlyCalendar from "./components/MonthlyCalendar/MonthlyCalendar";
+=======
+import MonthlySummary from "./components/MonthlySummary/page";
+import MonthlyCalendar from "./components/MonthlyCalendar/page";
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -49,6 +54,7 @@ export default function Main() {
     fetchData();
   }, []);
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   const fetchInspectionDates = async () => {
   //     if (notifications.length === 0) return;
@@ -104,12 +110,44 @@ export default function Main() {
         setInspectionDates(results);
       } catch (err) {
         console.error("❌ 전체 검사 일정 조회 실패:", err);
+=======
+  useEffect(() => {
+    const fetchInspectionDates = async () => {
+      if (notifications.length === 0) return;
+
+      const token = localStorage.getItem("accessToken");
+      if (!token) return;
+
+      const ids = Array.from(new Set(notifications.map((n) => n.targetId)));
+
+      try {
+        const results = await Promise.all(
+          ids.map(async (id) => {
+            const res = await axios.get<InspectionDetailResponse>(
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`,
+              { headers: { Authorization: token } }
+            );
+            return {
+              id,
+              nextInspectionDate: res.data.data.nextInspectionDate,
+            };
+          })
+        );
+        setInspectionDates(results);
+        console.log(results);
+      } catch (err) {
+        console.error("❌ inspectionDates 조회 실패:", err);
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
         setInspectionDates([]);
       }
     };
 
     fetchInspectionDates();
+<<<<<<< HEAD
   }, []);
+=======
+  }, [notifications]);
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
 
   const handlePageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);
@@ -132,6 +170,7 @@ export default function Main() {
       setNotifications((prev) =>
         prev.map((n) => (n.notificationId === id ? { ...n, isRead: true } : n))
       );
+<<<<<<< HEAD
       alert("알람을 읽음 처리 했습니다.");
     } catch (err) {
       console.error("❌ 읽음 처리 실패:", err);
@@ -155,6 +194,10 @@ export default function Main() {
     } catch (err) {
       console.error("알림 삭제 실패:", err);
       alert("알림을 삭제하지 못했습니다.");
+=======
+    } catch (err) {
+      console.error("❌ 읽음 처리 실패:", err);
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
     }
   };
 
@@ -169,7 +212,11 @@ export default function Main() {
 
   const calendarEvents = inspectionDates.map(({ id, nextInspectionDate }) => ({
     id: String(id),
+<<<<<<< HEAD
     title: `${id}번 점검`,
+=======
+    title: "정기점검",
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
     date: nextInspectionDate,
     color: getRandomColor(),
   }));
@@ -184,7 +231,10 @@ export default function Main() {
           currentPage={currentPage}
           onPageChange={handlePageChange}
           markAsRead={markAsRead}
+<<<<<<< HEAD
           deleteNotification={deleteNotification}
+=======
+>>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
         />
         <MonthlySummary />
       </div>
