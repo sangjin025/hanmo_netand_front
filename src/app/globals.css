@@ -34,14 +34,38 @@ body {
   color: blue;
 }
 
+.fc {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 .fc .fc-toolbar.fc-header-toolbar {
   padding: 20px;
   font-size: 24px;
   font-weight: 600;
-  background-color: pink;
+  background-color: #0976ea;
   margin-bottom: 0px !important;
   border-radius: 20px 20px 0px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fc .fc-button.fc-dateTitle-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+
+.fc .fc-button.fc-prev-button,
+.fc .fc-button.fc-next-button {
+  background-color: #0976ea;
+  border: none;
+  font-size: 20px;
+}
+
+.fc .fc-daygrid-day-frame {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
 }
