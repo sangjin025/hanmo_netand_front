@@ -55,7 +55,10 @@ body {
   background: none;
   border: none;
   font-size: 24px;
+<<<<<<< HEAD
   font-weight: 600;
+=======
+>>>>>>> d6f1b60 (feat: 달력 컴포넌트 이벤트 스크롤 & CSS 추가)
 }
 
 .fc .fc-button.fc-prev-button,
@@ -69,5 +72,8 @@ body {
   height: 150px;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   text-align: center;
+=======
+>>>>>>> d6f1b60 (feat: 달력 컴포넌트 이벤트 스크롤 & CSS 추가)
 }
