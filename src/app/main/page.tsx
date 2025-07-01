@@ -3,12 +3,17 @@ import styles from "./page.module.css";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import NoticeList from "./components/NoticeList/NoticeList";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MonthlySummary from "./components/MonthlySummary/MonthlySummary";
 import MonthlyCalendar from "./components/MonthlyCalendar/MonthlyCalendar";
 =======
 import MonthlySummary from "./components/MonthlySummary/page";
 import MonthlyCalendar from "./components/MonthlyCalendar/page";
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+import MonthlySummary from "./components/MonthlySummary/MonthlySummary";
+import MonthlyCalendar from "./components/MonthlyCalendar/MonthlyCalendar";
+>>>>>>> ccc92c4 (fix: 컴포넌트 구조 및 CSS import 정리로 배포 오류 해결)
 import { useState, useEffect } from "react";
 import axios from "axios";
 

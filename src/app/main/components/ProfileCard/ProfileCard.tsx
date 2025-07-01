@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import styles from "./ProfileCard.module.css";
@@ -37,6 +38,12 @@ export default function ProfileCard() {
     fetchProfile();
   }, []);
 
+=======
+import styles from "./ProfileCard.module.css";
+import Image from "next/image";
+
+export default function ProfileCard() {
+>>>>>>> ccc92c4 (fix: 컴포넌트 구조 및 CSS import 정리로 배포 오류 해결)
   return (
     <div className={styles.container}>
       <div className={styles.avatarWrapper}>
@@ -49,10 +56,15 @@ export default function ProfileCard() {
         />
       </div>
       <div className={styles.info}>
+<<<<<<< HEAD
         <div className={styles.name}> {profile?.name} </div>
         <div className={styles.details}>
           {profile?.phone} / {profile?.email}
         </div>
+=======
+        <div className={styles.name}> 홍길동 </div>
+        <div className={styles.details}> 넷앤드 / juju009@naver.com </div>
+>>>>>>> ccc92c4 (fix: 컴포넌트 구조 및 CSS import 정리로 배포 오류 해결)
       </div>
     </div>
   );
