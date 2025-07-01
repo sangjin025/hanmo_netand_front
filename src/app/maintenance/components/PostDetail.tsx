@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { DetailData } from "./types";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 
 type Entry = {
@@ -22,13 +22,11 @@ type Props = {
 };
 
 export default function PostDetailPage({
-  data,
   onEdit,
   onDelete,
-  readOnly = false,
-}: Props) {
+}: // readOnly = false,
+Props) {
   const { id } = useParams();
-  const router = useRouter();
   const [detail, setDetail] = useState<DetailData | null>();
   const d = detail?.details[0];
 

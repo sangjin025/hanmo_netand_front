@@ -14,7 +14,6 @@ interface NoticeListProps {
 
 export default function NoticeList({
   notifications,
-  inspectionDates,
   currentPage,
   onPageChange,
   markAsRead,
