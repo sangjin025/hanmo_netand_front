@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "5.11.5",
 <<<<<<< HEAD
@@ -17,6 +18,9 @@
     "@fullcalendar/react": "5.11.5",
     "axios": "^1.10.0",
 =======
+=======
+    "@fullcalendar/core": "^6.1.18",
+>>>>>>> e73924c (fix: 배포 오류 수정)
     "@fullcalendar/daygrid": "^6.1.18",
     "@fullcalendar/interaction": "^6.1.18",
     "@fullcalendar/react": "^6.1.18",
@@ -29,9 +33,14 @@
 =======
     "jwt-decode": "^4.0.0",
     "next": "15.3.3",
+<<<<<<< HEAD
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
 >>>>>>> cf4932a (정기점검: PostCreate 컴포넌트 리팩토링 ( 작성자에 로그인한 회원 자동 기입 ))
+=======
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+>>>>>>> e73924c (fix: 배포 오류 수정)
     "react-paginate": "^8.3.0"
   },
   "devDependencies": {

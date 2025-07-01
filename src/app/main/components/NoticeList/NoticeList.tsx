@@ -19,12 +19,15 @@ interface NoticeListProps {
 export default function NoticeList({
   notifications,
 <<<<<<< HEAD
+<<<<<<< HEAD
   currentPage,
   onPageChange,
   markAsRead,
   deleteNotification,
 =======
   inspectionDates,
+=======
+>>>>>>> e73924c (fix: 배포 오류 수정)
   currentPage,
   onPageChange,
   markAsRead,
