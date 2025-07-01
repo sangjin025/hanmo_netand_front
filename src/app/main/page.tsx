@@ -1,9 +1,9 @@
 "use client";
 import styles from "./page.module.css";
-import ProfileCard from "./components/ProfileCard/page";
+import ProfileCard from "./components/ProfileCard/ProfileCard";
 import NoticeList from "./components/NoticeList/NoticeList";
-import MonthlySummary from "./components/MonthlySummary/page";
-import MonthlyCalendar from "./components/MonthlyCalendar/page";
+import MonthlySummary from "./components/MonthlySummary/MonthlySummary";
+import MonthlyCalendar from "./components/MonthlyCalendar/MonthlyCalendar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 

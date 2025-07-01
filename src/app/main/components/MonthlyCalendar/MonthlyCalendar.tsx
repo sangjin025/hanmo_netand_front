@@ -1,5 +1,5 @@
 "use client";
-import styles from "./page.module.css";
+import styles from "./MonthlyCalendar.module.css";
 import { Calendar } from "@fullcalendar/core";
 const _keepCore = Calendar.name;
 // import FullCalendar, { EventInput, DatesSetArg } from "@fullcalendar/react";
