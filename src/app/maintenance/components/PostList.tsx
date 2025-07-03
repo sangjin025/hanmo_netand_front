@@ -12,31 +12,67 @@ export default function PostList() {
   const [page, setPage] = useState(0);
   const [size] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
-
-  const [filter, setFilter] = useState<"전체" | "회사명" | "담당자명">("전체");
+  const [filter, setFilter] = useState<"전체" | "회사명" | "제품명">("전체");
   const [query, setQuery] = useState("");
 
   const fetchList = async () => {
     const token = localStorage.getItem("accessToken");
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
+    const headers = { Authorization: token };
     try {
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
-      const params: Record<string, any> = { page, size, sort: [] };
+      const base = { page, size };
       if (filter === "회사명") {
-        params.companyName = query;
-      } else if (filter === "담당자명") {
-        params.inspector = query;
+        const res = await axios.get<ListResponse>(url, {
+          headers,
+          params: { ...base, companyName: query.trim() },
+        });
+        setList(res.data.data.content);
+        setTotalPages(res.data.data.totalPages);
+        return;
+      }
+      if (filter === "제품명") {
+        const res = await axios.get<ListResponse>(url, {
+          headers,
+          params: { ...base, productName: query.trim() },
+        });
+        setList(res.data.data.content);
+        setTotalPages(res.data.data.totalPages);
+        return;
       }
 
-      const res = await axios.get<ListResponse>(url, {
-        headers: {
-          authorization: token,
-        },
-        params,
+      if (filter === "전체" && query.trim()) {
+        const [byCompany, byProduct] = await Promise.all([
+          axios.get<ListResponse>(url, {
+            headers,
+            params: { ...base, companyName: query.trim() },
+          }),
+          axios.get<ListResponse>(url, {
+            headers,
+            params: { ...base, productName: query.trim() },
+          }),
+        ]);
+
+        const merged = [
+          ...byCompany.data.data.content,
+          ...byProduct.data.data.content,
+        ].filter(
+          (item, idx, arr) => arr.findIndex((p) => p.id === item.id) === idx // id 중복 제거
+        );
+
+        setList(merged);
+        setTotalPages(Math.ceil(merged.length / size));
+        return;
+      }
+
+      /* 검색어 없이 */
+      const resAll = await axios.get<ListResponse>(url, {
+        headers,
+        params: base,
       });
-      setList(res.data.data.content);
-      setTotalPages(res.data.data.totalPages);
+      setList(resAll.data.data.content);
+      setTotalPages(resAll.data.data.totalPages);
     } catch (e) {
-      console.log("에러: ", e);
+      console.error("이슈 목록 조회 실패:", e);
     }
   };
 
