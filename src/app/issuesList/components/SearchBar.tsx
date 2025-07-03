@@ -4,8 +4,7 @@ import styles from "./SearchBar.module.css";
 import Image from "next/image";
 import { useState } from "react";
 
-type FilterOption = "전체" | "제목" | "회사명";
-
+export type FilterOption = "전체" | "회사명" | "제품명";
 interface SearchBarProps {
   onSearch: (filter: FilterOption, query: string) => void;
 }
@@ -13,7 +12,6 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [filter, setFilter] = useState<FilterOption>("전체");
   const [query, setQuery] = useState("");
-
   const handleSearch = () => {
     onSearch(filter, query);
   };
@@ -26,8 +24,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         onChange={(e) => setFilter(e.target.value as FilterOption)}
       >
         <option>전체</option>
-        <option>제목</option>
         <option>회사명</option>
+        <option>제품명</option>
       </select>
       <input
         className={styles.input}
@@ -42,5 +40,3 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     </div>
   );
 }
-
-export type { FilterOption };

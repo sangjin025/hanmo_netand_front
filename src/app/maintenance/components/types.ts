@@ -6,6 +6,7 @@ export interface InspectionSummary {
   inspectionDate: string;
   status: "SCHEDULED" | "COMPLETED" | "CANCELLED";
   inspector: string;
+  id?: string;
 }
 
 export interface ListResponse {
