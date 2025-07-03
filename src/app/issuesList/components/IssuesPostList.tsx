@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "use client";
 
 import styles from "./IssuesPostList.module.css";
@@ -90,6 +91,8 @@ export default function IssueList() {
 =======
 =======
 // app/issuesList/components/IssuesPostList.tsx
+=======
+>>>>>>> 1b92146 (fix: 검색 api 추가 및 로직 일부 수정)
 "use client";
 
 >>>>>>> db7d18f (feat: 이슈 목록 컴포넌트 UI/UX 개선)
@@ -97,7 +100,6 @@ import styles from "./IssuesPostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
-
 import { IssueSummary, ListResponse } from "./types";
 import Link from "next/link";
 
@@ -106,29 +108,73 @@ export default function IssueList() {
   const [page, setPage] = useState(0);
   const [size] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 >>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 =======
   const [filter, setFilter] = useState<"전체" | "제목" | "회사명">("전체");
+=======
+  const [filter, setFilter] = useState<"전체" | "회사명" | "제품명">("전체");
+>>>>>>> 1b92146 (fix: 검색 api 추가 및 로직 일부 수정)
   const [query, setQuery] = useState("");
 
   const fetchList = async () => {
     const token = localStorage.getItem("accessToken");
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/issues`;
+    const headers = { Authorization: token };
     try {
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/issues`;
-      const params: Record<string, any> = { page, size };
-      if (filter === "제목") params.title = query;
-      else if (filter === "회사명") params.companyName = query;
+      const base = { page, size };
+      if (filter === "회사명") {
+        const res = await axios.get<ListResponse>(url, {
+          headers,
+          params: { ...base, companyName: query.trim() },
+        });
+        setList(res.data.data.content);
+        setTotalPages(res.data.data.totalPages);
+        return;
+      }
+      if (filter === "제품명") {
+        const res = await axios.get<ListResponse>(url, {
+          headers,
+          params: { ...base, productName: query.trim() },
+        });
+        setList(res.data.data.content);
+        setTotalPages(res.data.data.totalPages);
+        return;
+      }
 
-      const res = await axios.get<ListResponse>(url, {
-        headers: { authorization: token },
-        params,
+      if (filter === "전체" && query.trim()) {
+        const [byCompany, byProduct] = await Promise.all([
+          axios.get<ListResponse>(url, {
+            headers,
+            params: { ...base, companyName: query.trim() },
+          }),
+          axios.get<ListResponse>(url, {
+            headers,
+            params: { ...base, productName: query.trim() },
+          }),
+        ]);
+
+        const merged = [
+          ...byCompany.data.data.content,
+          ...byProduct.data.data.content,
+        ].filter(
+          (item, idx, arr) => arr.findIndex((p) => p.id === item.id) === idx // id 중복 제거
+        );
+
+        setList(merged);
+        setTotalPages(Math.ceil(merged.length / size));
+        return;
+      }
+
+      /* 검색어 없이 */
+      const resAll = await axios.get<ListResponse>(url, {
+        headers,
+        params: base,
       });
-      setList(res.data.data.content);
-      console.log("response content:", res.data.data.content);
-
-      setTotalPages(res.data.data.totalPages);
+      setList(resAll.data.data.content);
+      setTotalPages(resAll.data.data.totalPages);
     } catch (e) {
       console.error("이슈 목록 조회 실패:", e);
     }
@@ -139,6 +185,7 @@ export default function IssueList() {
   }, [page, size, filter, query]);
 
   const handleSearch = (newFilter: typeof filter, newQuery: string) => {
+    setPage(0);
     setFilter(newFilter);
     setQuery(newQuery);
   };
@@ -147,6 +194,7 @@ export default function IssueList() {
   return (
     <div className={styles.container}>
       <span className={styles.title}> 이슈 조회 </span>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <SearchBar onSearch={handleSearch} />
@@ -158,6 +206,9 @@ export default function IssueList() {
       <SearchBar
       onSearch={handleSearch}
       />
+=======
+      <SearchBar onSearch={handleSearch} />
+>>>>>>> 1b92146 (fix: 검색 api 추가 및 로직 일부 수정)
 
 >>>>>>> db7d18f (feat: 이슈 목록 컴포넌트 UI/UX 개선)
       <table className={styles.table}>

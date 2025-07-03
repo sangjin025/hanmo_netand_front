@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 "use client";
 
+<<<<<<< HEAD
 import styles from "./SearchBar.module.css";
 import Image from "next/image";
 import { useState } from "react";
@@ -41,11 +42,13 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 =======
 "use client";
 >>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
+=======
+>>>>>>> 1b92146 (fix: 검색 api 추가 및 로직 일부 수정)
 import styles from "./SearchBar.module.css";
 import Image from "next/image";
 import { useState } from "react";
 
-export type FilterOption = "전체" | "회사명" | "담당자명";
+export type FilterOption = "전체" | "회사명" | "제품명";
 interface SearchBarProps {
   onSearch: (filter: FilterOption, query: string) => void;
 }
@@ -66,7 +69,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       >
         <option>전체</option>
         <option>회사명</option>
-        <option>담당자명</option>
+        <option>제품명</option>
       </select>
 <<<<<<< HEAD
       <input className={styles.input}></input>
@@ -78,7 +81,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        placeholder="검색어를 입력하세요."
+        placeholder="검색어를 입력하세요"
       />
       <button className={styles.btn} onClick={handleSearch} aria-label="검색">
 >>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
