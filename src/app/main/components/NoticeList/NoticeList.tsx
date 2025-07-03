@@ -9,9 +9,13 @@ interface NoticeListProps {
   inspectionDates: InspectionDate[];
   markAsRead: (notificationId: number) => void;
 <<<<<<< HEAD
+<<<<<<< HEAD
   deleteNotification: (notificationId: number) => void;
 =======
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+  deleteNotification: (notificationId: number) => void;
+>>>>>>> 1dbf6ba (feat[main, noticeBox]: 알림읽음 시 css 변경, 알림삭제 버튼 추가)
   onPageChange: (selectedPage: number) => void;
   currentPage: number;
 }
@@ -24,6 +28,7 @@ export default function NoticeList({
   onPageChange,
   markAsRead,
   deleteNotification,
+<<<<<<< HEAD
 =======
   inspectionDates,
 =======
@@ -32,6 +37,8 @@ export default function NoticeList({
   onPageChange,
   markAsRead,
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+>>>>>>> 1dbf6ba (feat[main, noticeBox]: 알림읽음 시 css 변경, 알림삭제 버튼 추가)
 }: NoticeListProps) {
   const ITEMS_PER_PAGE = 4;
 
@@ -60,10 +67,13 @@ export default function NoticeList({
         {currentItems.map((n) => (
           <div
             key={n.notificationId}
-            className={`${styles.noticeBox} ${styles.noticeBox2}`}
+            className={`${styles.noticeBox} ${styles.noticeBox2}
+            ${n.isRead ? styles.read : ""}
+            `}
             onClick={() => markAsRead(n.notificationId)}
           >
             {`>> ${n.content} ${n.targetId}`}
+<<<<<<< HEAD
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
           </div>
         ))}
@@ -93,6 +103,8 @@ export default function NoticeList({
             onClick={() => markAsRead(n.notificationId)}
           >
             {`>> ${n.content} ${n.targetId}`}
+=======
+>>>>>>> 1dbf6ba (feat[main, noticeBox]: 알림읽음 시 css 변경, 알림삭제 버튼 추가)
             <button
               className={styles.deleteBtn}
               onClick={(e) => {

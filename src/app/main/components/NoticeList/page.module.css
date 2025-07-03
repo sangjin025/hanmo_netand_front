@@ -75,6 +75,9 @@
   cursor: not-allowed;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1dbf6ba (feat[main, noticeBox]: 알림읽음 시 css 변경, 알림삭제 버튼 추가)
 
 .deleteBtn {
   margin-left: 10px;
@@ -93,5 +96,8 @@
 .read {
   color: gray;
 }
+<<<<<<< HEAD
 =======
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+>>>>>>> 1dbf6ba (feat[main, noticeBox]: 알림읽음 시 css 변경, 알림삭제 버튼 추가)
