@@ -12,6 +12,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
 
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/login`;
   const loginFunction = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const api = axios.create({
@@ -21,7 +22,7 @@ export default function Login() {
       },
     });
 
-    const res = await api.post("/api/v1/auth/login", {
+    const res = await api.post(url, {
       email,
       password,
     });
