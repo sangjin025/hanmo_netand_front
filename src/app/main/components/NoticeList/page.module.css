@@ -74,3 +74,21 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.deleteBtn {
+  margin-left: 10px;
+  background: none;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 0px 7px;
+  cursor: pointer;
+  font-weight: bold;
+  color: red;
+  opacity: 0.5;
+}
+
+/* 조건부 */
+
+.read {
+  color: gray;
+}

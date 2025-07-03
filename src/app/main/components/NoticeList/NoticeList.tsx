@@ -8,6 +8,7 @@ interface NoticeListProps {
   notifications: Notification[];
   inspectionDates: InspectionDate[];
   markAsRead: (notificationId: number) => void;
+  deleteNotification: (notificationId: number) => void;
   onPageChange: (selectedPage: number) => void;
   currentPage: number;
 }
@@ -17,6 +18,7 @@ export default function NoticeList({
   currentPage,
   onPageChange,
   markAsRead,
+  deleteNotification,
 }: NoticeListProps) {
   const ITEMS_PER_PAGE = 4;
 
@@ -37,10 +39,21 @@ export default function NoticeList({
         {currentItems.map((n) => (
           <div
             key={n.notificationId}
-            className={`${styles.noticeBox} ${styles.noticeBox2}`}
+            className={`${styles.noticeBox} ${styles.noticeBox2}
+            ${n.isRead ? styles.read : ""}
+            `}
             onClick={() => markAsRead(n.notificationId)}
           >
             {`>> ${n.content} ${n.targetId}`}
+            <button
+              className={styles.deleteBtn}
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteNotification(n.notificationId);
+              }}
+            >
+              X
+            </button>
           </div>
         ))}
         {currentItems.length < ITEMS_PER_PAGE &&
