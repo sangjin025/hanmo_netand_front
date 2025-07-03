@@ -60,6 +60,9 @@ export default function Main() {
   }, []);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 50ba503 (fix: 메인화면 캘린더 일정표시 로직 수정)
   // useEffect(() => {
   //   const fetchInspectionDates = async () => {
   //     if (notifications.length === 0) return;
@@ -93,6 +96,7 @@ export default function Main() {
   //   fetchInspectionDates();
   // }, [notifications]);
 
+<<<<<<< HEAD
   useEffect(() => {
     const fetchInspectionDates = async () => {
       const token = localStorage.getItem("accessToken");
@@ -116,43 +120,49 @@ export default function Main() {
       } catch (err) {
         console.error("❌ 전체 검사 일정 조회 실패:", err);
 =======
+=======
+>>>>>>> 50ba503 (fix: 메인화면 캘린더 일정표시 로직 수정)
   useEffect(() => {
     const fetchInspectionDates = async () => {
-      if (notifications.length === 0) return;
-
       const token = localStorage.getItem("accessToken");
       if (!token) return;
 
-      const ids = Array.from(new Set(notifications.map((n) => n.targetId)));
-
       try {
-        const results = await Promise.all(
-          ids.map(async (id) => {
-            const res = await axios.get<InspectionDetailResponse>(
-              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`,
-              { headers: { Authorization: token } }
-            );
-            return {
-              id,
-              nextInspectionDate: res.data.data.nextInspectionDate,
-            };
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`,
+          { headers: { Authorization: token } }
+        );
+
+        console.log("잉 :", res.data.data.content);
+        const list = res.data.data.content;
+        const results = list.map(
+          (i: { inspectionId: number; nextInspectionDate: string }) => ({
+            id: i.inspectionId,
+            nextInspectionDate: i.nextInspectionDate,
           })
         );
         setInspectionDates(results);
-        console.log(results);
       } catch (err) {
+<<<<<<< HEAD
         console.error("❌ inspectionDates 조회 실패:", err);
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+        console.error("❌ 전체 검사 일정 조회 실패:", err);
+>>>>>>> 50ba503 (fix: 메인화면 캘린더 일정표시 로직 수정)
         setInspectionDates([]);
       }
     };
 
     fetchInspectionDates();
 <<<<<<< HEAD
+<<<<<<< HEAD
   }, []);
 =======
   }, [notifications]);
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+  }, []);
+>>>>>>> 50ba503 (fix: 메인화면 캘린더 일정표시 로직 수정)
 
   const handlePageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);
@@ -212,6 +222,25 @@ export default function Main() {
     }
   };
 
+  // markAsRead 바로 아래에 추가
+  const deleteNotification = async (id: number) => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) return;
+
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/notifications/${id}`,
+        { headers: { Authorization: token } }
+      );
+      setNotifications(
+        (prev) => prev.filter((n) => n.notificationId !== id) // 로컬에서도 제거
+      );
+    } catch (err) {
+      console.error("알림 삭제 실패:", err);
+      alert("알림을 삭제하지 못했습니다.");
+    }
+  };
+
   function getRandomColor() {
     return (
       "#" +
@@ -247,9 +276,13 @@ export default function Main() {
           onPageChange={handlePageChange}
           markAsRead={markAsRead}
 <<<<<<< HEAD
+<<<<<<< HEAD
           deleteNotification={deleteNotification}
 =======
 >>>>>>> 89b0425 (feat: 알림 리스트 페이징 및 점검일 표시 구현)
+=======
+          deleteNotification={deleteNotification}
+>>>>>>> 50ba503 (fix: 메인화면 캘린더 일정표시 로직 수정)
         />
         <MonthlySummary />
       </div>
