@@ -8,20 +8,20 @@ export default function SideBar() {
   const pathname = usePathname();
   return (
     <div className={styles.container}>
-      <div className={styles.title}> 정기점검 관리 </div>
+      <div className={styles.title}> 이슈 관리 </div>
       <div className={styles.nav}>
         <Link
-          href="/maintenance"
+          href="/issuesList"
           className={`${styles.nav_item} ${
-            pathname === "/maintenance" ? styles.active : ""
+            pathname === "/issuesList" ? styles.active : ""
           }`}
         >
           조회
         </Link>
         <Link
-          href="/maintenance/create"
+          href="/issuesList/create"
           className={`${styles.nav_item} ${
-            pathname === "/maintenance/create" ? styles.active : ""
+            pathname === "/issuesList/create" ? styles.active : ""
           }`}
         >
           등록

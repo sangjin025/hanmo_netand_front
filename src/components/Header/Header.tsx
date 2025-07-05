@@ -38,7 +38,7 @@ export default function Header() {
         <Link
           href="/issuesList"
           className={`${styles.navItem} ${
-            pathname === "/issues" ? styles.active : ""
+            pathname === "/issuesList" ? styles.active : ""
           }`}
         >
           이슈관리

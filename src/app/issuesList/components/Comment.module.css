@@ -1,0 +1,49 @@
+.container {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.divider{
+    margin-top: 50px;
+    border:1px solid;
+    color:black
+    
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 14px;
+  color: #555;
+}
+
+.author {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.timestamp {
+  margin-top: 8px;
+  padding-right:490px;
+  font-size: 12px;
+  color: #999;
+  font-weight: bold;
+}
+
+.content {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.bulletList li {
+  list-style-type: disc;
+}

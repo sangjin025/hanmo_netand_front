@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from '../components/issues.module.css';
+import { api } from '@/lib/api'; 
 
 
 

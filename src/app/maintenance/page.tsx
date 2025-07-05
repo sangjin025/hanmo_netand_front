@@ -1,12 +1,6 @@
-import PostCreate from "./components/PostCreate";
+"use client";
 import PostList from "./components/PostList";
-import styles from "./page.module.css";
 
 export default function Maintenance() {
-  return (
-    <div>
-      {/* <PostList /> */}
-      <PostCreate />
-    </div>
-  );
+  return <PostList />;
 }

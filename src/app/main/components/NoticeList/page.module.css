@@ -32,9 +32,63 @@
   font-size: 20px;
 }
 
+.noticeBox2 {
+  cursor: pointer;
+}
+
+.noticeBox2:hover {
+  background-color: rgba(9, 118, 234, 0.39);
+}
+
 .paginationWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 60px;
+}
+
+.pagination {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 0px;
+  align-items: center;
+}
+
+.page,
+.prev,
+.next,
+.break {
+  cursor: pointer;
+  padding: 0px 5px;
+  border-radius: 4px;
+  /* border: 1px solid black; */
+}
+
+.activePage {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  margin-left: 10px;
+  background: none;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 0px 7px;
+  cursor: pointer;
+  font-weight: bold;
+  color: red;
+  opacity: 0.5;
+}
+
+/* 조건부 */
+
+.read {
+  color: gray;
 }

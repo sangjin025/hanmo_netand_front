@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./PostList.module.css";
+import styles from "./IssuesPostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SearchBar, { FilterOption } from "./SearchBar";
-import { InspectionSummary, ListResponse } from "./types";
+import SearchBar from "./SearchBar";
+import { IssueSummary, ListResponse } from "./types";
 import Link from "next/link";
 
-export default function PostList() {
-  const [list, setList] = useState<InspectionSummary[]>([]);
+export default function IssueList() {
+  const [list, setList] = useState<IssueSummary[]>([]);
   const [page, setPage] = useState(0);
   const [size] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
@@ -17,7 +17,7 @@ export default function PostList() {
 
   const fetchList = async () => {
     const token = localStorage.getItem("accessToken");
-    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/issues`;
     const headers = { Authorization: token };
     try {
       const base = { page, size };
@@ -81,52 +81,56 @@ export default function PostList() {
   }, [page, size, filter, query]);
 
   const handleSearch = (newFilter: typeof filter, newQuery: string) => {
+    setPage(0);
     setFilter(newFilter);
     setQuery(newQuery);
   };
+
   return (
     <div className={styles.container}>
-      <span className={styles.title}> 정기점검 조회 </span>
+      <span className={styles.title}> 이슈 조회 </span>
       <SearchBar onSearch={handleSearch} />
+
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
             <th>등록일자</th>
+            <th>제목</th>
             <th>회사명</th>
             <th>제품명</th>
-            <th>점검일</th>
-            <th>상태</th>
-            <th>책임자</th>
-            <th>상태조회</th>
+            <th>중요도</th>
+            <th>처리상태</th>
+            <th>담당자</th>
+            <th>이슈유형</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
-          {list?.map((post) => (
-            <tr key={post.inspectionId}>
-              <td>{post.createdAt?.split("T")[0]}</td>
+          {list.map((post) => (
+            <tr key={post.id}>
+              <td>{post.createdAt.split("T")[0]}</td>
+              <td>
+                <Link href={`/issuesList/${post.id}`}>{post.title}</Link>
+              </td>
               <td>{post.companyName}</td>
               <td>{post.productName}</td>
-              <td>{post.inspectionDate}</td>
+              <td>{post.priority}</td>
               <td>{post.status}</td>
-              <td>{post.inspector}</td>
-              <td>
-                <Link href={`/maintenance/${post.inspectionId}`}>
-                  <button className={styles.statusbtn}> 확인하기 </button>
-                </Link>
-              </td>
+              <td>{post.assigneeName}</td>
+              <td>{post.issueType}</td>
             </tr>
           ))}
         </tbody>
       </table>
+
       <div className={styles.pagination}>
         <button onClick={() => setPage((p) => Math.max(p - 1, 0))}>
-          ◀︎ 이전
+          ◀ 이전
         </button>
         <span style={{ margin: "0 8px" }}>
           {page + 1} / {totalPages}
         </span>
         <button onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}>
-          다음 ▶︎
+          다음 ▶
         </button>
       </div>
     </div>

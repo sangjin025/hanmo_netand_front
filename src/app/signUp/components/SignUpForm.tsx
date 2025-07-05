@@ -4,8 +4,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './SignUpForm.module.css';
+import { api } from '@/lib/api'; 
 
 export default function SignUpForm() {
+
   // form state
   const [form, setForm] = useState({
     email: '',
@@ -16,6 +18,50 @@ export default function SignUpForm() {
     phone: '',
     companyName: '',
   });
+
+  
+
+  // 네트워크 상태 관리용 state
+const [loading, setLoading] = useState(false);
+const [error, setError]     = useState<string|null>(null);
+const [success, setSuccess] = useState(false);
+
+// 1) 인증번호 발송
+const handleSendCode = async () => {
+  // try {
+  //   await api.post('/auth/send-code', { email: form.email });
+  //   alert('인증번호를 발송했습니다. 메일함을 확인하세요.');
+  // } catch (e: any) {
+  //   alert(e.response?.data || '발송 실패');
+  // }
+  
+    console.log('[프론트] 인증 버튼 클릭, email =', form.email);
+  try {
+    // Next.js API 라우트를 쓴다면 '/api/auth/send-code'
+    const res = await api.post('/auth/send-code', { email: form.email });
+    console.log('[프론트] send-code 응답 →', res.data);
+    alert(res.data.message);
+  } catch (err: any) {
+    console.error('[프론트] send-code 에러 →', err);
+    alert(err.response?.data?.message || '발송 실패');
+  }
+};
+
+// 2) 인증번호 확인
+const handleVerifyCode = async () => {
+  try {
+    await api.post('/auth/verify-code', {
+      email: form.email,
+      code:  form.code
+    });
+    alert('이메일 인증이 완료되었습니다.');
+    // 예: 인증완료 표시, 다음 단계 활성화
+  } catch (e: any) {
+    alert(e.response?.data || '인증 실패');
+  }
+};
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,15 +85,34 @@ export default function SignUpForm() {
   const [agreementOpen, setAgreementOpen] = useState(false);
   const [agreementChecked, setAgreementChecked] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!agreementChecked) return;
-    // TODO: 실제 제출 로직
-    console.log('제출 데이터', form, companyType);
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!agreementChecked) {
+    setError('개인정보 활용 동의를 해주세요.');
+    return;
+  }
+  if (form.password !== form.confirmPassword) {
+    setError('비밀번호가 일치하지 않습니다.');
+    return;
+  }
+  setLoading(true);
+  setError(null);
+  try {
+    const payload = { ...form, companyType };
+    await api.post('/auth/signup', payload);
+    setSuccess(true);
+  } catch (err: any) {
+    setError(err.response?.data?.message || err.message || '오류가 발생했습니다.');
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit}>
+     {error && <p className={styles.error}>{error}</p>}
       {/* 이메일·인증·비밀번호 */}
       <div className={styles.inputGroup}>
         {/* 이메일 */}
@@ -64,7 +129,7 @@ export default function SignUpForm() {
             value={form.email}
             onChange={handleChange}
           />
-          <button type="button" className={styles.sideBtn}>인증</button>
+          <button type="button" className={styles.sideBtn} onClick={handleSendCode}>인증</button>
         </div>
 
         {/* 인증번호 */}
@@ -81,7 +146,7 @@ export default function SignUpForm() {
             value={form.code}
             onChange={handleChange}
           />
-          <button type="button" className={styles.sideBtn}>확인</button>
+          <button type="button" className={styles.sideBtn} onClick={handleVerifyCode}>확인</button>
         </div>
 
         {/* 비밀번호 */}
@@ -267,10 +332,10 @@ export default function SignUpForm() {
       {/* 가입하기 */}
       <button
         type="submit"
-        disabled={!agreementChecked}
-        className={`${styles.submitBtn} ${agreementChecked ? styles.enabled : styles.disabled}`}
+        disabled={loading}  // 💡 로딩 중에 비활성화
+        className={`${styles.submitBtn} ${loading ? styles.disabled : styles.enabled}`}
       >
-        가입하기
+        {loading ? '가입 중…' : '가입하기'}  {/* 💡 로딩 중 문구 변경 */}
       </button>
     </form>
   );
