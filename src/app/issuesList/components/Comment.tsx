@@ -21,6 +21,9 @@ export function Comment({
 }: CommentProps) {
   return (
     <>
+    <div className={styles.listBox}>목록</div>
+    
+  <p style={{ color: "black" }}>댓글 3개</p>
     <hr className={styles.divider}/>
     <div className={styles.container}>
       <div className={styles.header}>

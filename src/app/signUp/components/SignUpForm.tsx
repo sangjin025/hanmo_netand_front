@@ -1,10 +1,11 @@
 // src/app/signUp/components/SignUpForm.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './SignUpForm.module.css';
 import { api } from '@/lib/api'; 
+import axios from "axios";
 
 export default function SignUpForm() {
 
@@ -16,7 +17,7 @@ export default function SignUpForm() {
     confirmPassword: '',
     name: '',
     phone: '',
-    companyName: '',
+    userType: '',
   });
 
   
@@ -25,20 +26,16 @@ export default function SignUpForm() {
 const [loading, setLoading] = useState(false);
 const [error, setError]     = useState<string|null>(null);
 const [success, setSuccess] = useState(false);
+const [userType, setUserType]     = useState<UserType | "">("");
+const [dropdownOpen, setDropdownOpen] = useState(false);
 
 // 1) 인증번호 발송
 const handleSendCode = async () => {
-  // try {
-  //   await api.post('/auth/send-code', { email: form.email });
-  //   alert('인증번호를 발송했습니다. 메일함을 확인하세요.');
-  // } catch (e: any) {
-  //   alert(e.response?.data || '발송 실패');
-  // }
-  
-    console.log('[프론트] 인증 버튼 클릭, email =', form.email);
-  try {
-    // Next.js API 라우트를 쓴다면 '/api/auth/send-code'
-    const res = await api.post('/auth/send-code', { email: form.email });
+  try{
+    const res = await api.post(
+      '/api/v1/auth/email/send',
+      { email: form.email }
+    );
     console.log('[프론트] send-code 응답 →', res.data);
     alert(res.data.message);
   } catch (err: any) {
@@ -50,14 +47,16 @@ const handleSendCode = async () => {
 // 2) 인증번호 확인
 const handleVerifyCode = async () => {
   try {
-    await api.post('/auth/verify-code', {
-      email: form.email,
-      code:  form.code
-    });
-    alert('이메일 인증이 완료되었습니다.');
+  const res = await api.post('/api/v1/auth/email/verify', {
+     code:  form.code
+   });
+   alert(res.data.message);  // ← 서버가 준 message 필드만 띄우세요.
     // 예: 인증완료 표시, 다음 단계 활성화
-  } catch (e: any) {
-    alert(e.response?.data || '인증 실패');
+  } catch (err: any) {
+    // 서버가 { message: "Invalid code" } 처럼 보낸다고 가정
+    const serverMsg = err.response?.data?.message;
+    alert(serverMsg ?? '인증에 실패했습니다.');
+    console.error(err);
   }
 };
 
@@ -73,9 +72,22 @@ const handleVerifyCode = async () => {
     setForm(prev => ({ ...prev, phone: onlyNums }));
   };
 
-  // dropdown state
-  const [companyType, setCompanyType] = useState('');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+
+
+ // Swagger 스펙에 맞춘 유니언 타입
+ type UserType =
+   | "NETAND_REPORTER"
+   | "NETAND_ENGINEER"
+   | "PARTNER_ENGINEER";
+
+   const userTypeOptions: { label: string; value: UserType }[] = [
+  { label: "넷앤드 소속 이슈 발의 담당자", value: "NETAND_REPORTER" },
+  { label: "넷앤드 엔지니어",               value: "NETAND_ENGINEER" },
+  { label: "파트너사 엔지니어",             value: "PARTNER_ENGINEER" },
+];
+
+
 
   // password toggle
   const [showPassword, setShowPassword] = useState(false);
@@ -98,8 +110,13 @@ const handleSubmit = async (e: React.FormEvent) => {
   setLoading(true);
   setError(null);
   try {
-    const payload = { ...form, companyType };
-    await api.post('/auth/signup', payload);
+  // 이미 userType 상태에 코드값이 들어 있으므로, 그대로 payload 에 포함
+   const payload = {
+     ...form,
+     userType,    // ← 이미 코드값이 들어 있는 상태 그대로
+   };
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/signup`;
+   await axios.post(url, payload);
     setSuccess(true);
   } catch (err: any) {
     setError(err.response?.data?.message || err.message || '오류가 발생했습니다.');
@@ -107,6 +124,18 @@ const handleSubmit = async (e: React.FormEvent) => {
     setLoading(false);
   }
 };
+
+const entries: Entry[] = [
+  { label: "이메일", name:"email", value: form.email},
+  { label: "비밀번호", name:"password", value: form.password},
+  { label: "이름", name:"name", value:form.name},
+  { label: "휴대전화 번호", name:"phone", value: form.phone},
+  { label: "회사구분", name:"userType", value:form.userType}
+];
+
+useEffect(() => {
+
+})
 
 
 
@@ -232,21 +261,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           />
         </div>
 
-        {/* 회사명 */}
-        <div className={styles.inputBox2}>
-          <Image 
-                src="/images/signup/building.png" 
-                width={24} height={24} 
-                alt="회사명" 
-                className={styles.icon_building}/>
-          <input
-            type="text"
-            name="companyName"
-            placeholder="회사명"
-            value={form.companyName}
-            onChange={handleChange}
-          />
-        </div>
+ 
 
         {/* 회사 구분 */}
         <div className={styles.dropdownContainer}>
@@ -256,9 +271,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                   width={24} height={24} 
                   alt="회사 구분" 
                   className={styles.icon_building}/>
-            <span className={`${styles.label} ${companyType ? styles.labelSelected : ''}`}>
-              {companyType || '회사 구분'}
-            </span>
+            <span className={`${styles.label} ${userType ? styles.labelSelected : ''}`}>
+   { userTypeOptions.find(o => o.value === userType)?.label ?? '회사 구분' }
+ </span>
             <button type="button" className={styles.arrowBtn}>
               <Image
                   src="/images/signup/arrow.png"
@@ -273,19 +288,22 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
           {dropdownOpen && (
             <ul className={styles.dropdownList}>
-              {['고객사','파트너사','엔지니어'].map(item => (
-                <li
-                  key={item}
-                  className={styles.dropdownItem}
-                  onClick={() => { setCompanyType(item); setDropdownOpen(false); }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+                   {userTypeOptions.map((opt) => (
+     <li
+       key={opt.value}
+       className={styles.dropdownItem}
+       onClick={() => {
+         setUserType(opt.value);    // ← 바로 코드값(value) 저장
+         setDropdownOpen(false);
+       }}
+     >
+       {opt.label}               
+     </li>
+   ))}
+   </ul>
+        )}
       </div>
+    </div>
 
       {/* 개인정보 활용 동의 */}
       <div className={styles.agreementContainer}>

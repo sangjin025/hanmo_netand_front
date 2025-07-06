@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useState, ChangeEvent, ReactNode } from 'react';
 import styles from './mypage.module.css';
 import Link from 'next/link';
-import { api } from '@/lib/api'; 
+import axios from 'axios';
 
 interface UserInfo {
   name: string;
