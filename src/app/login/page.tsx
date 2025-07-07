@@ -15,6 +15,7 @@ export default function Login() {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/login`;
   const loginFunction = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("▶️ API Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
     const api = axios.create({
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
       headers: {
