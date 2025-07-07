@@ -34,6 +34,9 @@ export default function MonthlyCalendar({ events }: MonthlyCalendarProps) {
       const id = info.event.id;
       router.push(`/maintenance/${id}`);
     },
+    eventDidMount: (info) => {
+      info.el.style.cursor = "pointer";
+    },
   };
 
   return (
