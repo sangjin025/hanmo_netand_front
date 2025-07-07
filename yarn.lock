@@ -110,7 +110,14 @@
     "@eslint/core" "^0.15.0"
     levn "^0.4.1"
 
-"@fullcalendar/common@5.11.5", "@fullcalendar/common@~5.11.5":
+"@fullcalendar/common@^5.11.5":
+  version "5.11.5"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/common/-/common-5.11.5.tgz#1a30a852b33ab5c1b04f4ee558941bed3c72d07f"
+  integrity sha512-3iAYiUbHXhjSVXnYWz27Od2cslztUPsOwiwKlfGvQxBixv2Kl6a8IPwaijKFYJHXdwYmfPoEgK7rvqAGVoIYwA==
+  dependencies:
+    tslib "^2.1.0"
+
+"@fullcalendar/common@~5.11.5":
   version "5.11.5"
   resolved "https://registry.npmjs.org/@fullcalendar/common/-/common-5.11.5.tgz"
   integrity sha512-3iAYiUbHXhjSVXnYWz27Od2cslztUPsOwiwKlfGvQxBixv2Kl6a8IPwaijKFYJHXdwYmfPoEgK7rvqAGVoIYwA==
@@ -126,29 +133,20 @@
     preact "~10.12.1"
     tslib "^2.1.0"
 
-"@fullcalendar/daygrid@5.11.5":
-  version "5.11.5"
-  resolved "https://registry.npmjs.org/@fullcalendar/daygrid/-/daygrid-5.11.5.tgz"
-  integrity sha512-hMpq0U3Nucys2jDD+crbkJCr+tVt3fDw04OE3fbpisuzqtrHxIzRmnUOdbWUjJQyToAAkt7UVUQ9E7hYdmvyGA==
-  dependencies:
-    "@fullcalendar/common" "~5.11.5"
-    tslib "^2.1.0"
+"@fullcalendar/daygrid@^6.1.18":
+  version "6.1.18"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/daygrid/-/daygrid-6.1.18.tgz#49b4a237d0115b4695cd8593d0dfa36d81fa5ad4"
+  integrity sha512-s452Zle1SdMEzZDw+pDczm8m3JLIZzS9ANMThXTnqeqJewW1gqNFYas18aHypJSgF9Fh9rDJjTSUw04BpXB/Mg==
 
-"@fullcalendar/interaction@5.11.5":
-  version "5.11.5"
-  resolved "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-5.11.5.tgz"
-  integrity sha512-Vg9uw8zKXZc2RP7it88U8R/kxJIQsK4pyv+s+RhlvT5NBZ9KLOh5y2xGCS4A4hyY7qLrzugxnKYlu6NwNqJ/RQ==
-  dependencies:
-    "@fullcalendar/common" "~5.11.5"
-    tslib "^2.1.0"
+"@fullcalendar/interaction@^6.1.18":
+  version "6.1.18"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/interaction/-/interaction-6.1.18.tgz#2fbcae93f982af2abfe8a1078bfa740fe559fe44"
+  integrity sha512-f/mD5RTjzw+Q6MGTMZrLCgIrQLIUUO9NV/58aM2J6ZBQZeRlNizDqmqldqyG+j49zj2vFhUfZibPrVKWm5yA4Q==
 
-"@fullcalendar/react@5.11.5":
-  version "5.11.5"
-  resolved "https://registry.npmjs.org/@fullcalendar/react/-/react-5.11.5.tgz"
-  integrity sha512-PbBlDyKJ8IQYf5mBdD1mjDas2v3eEU1UfWYLv0e6uGCktH+g4mgaG/LCDOwE65V5VH5FH8+kVkFjIScwA54WwA==
-  dependencies:
-    "@fullcalendar/common" "~5.11.5"
-    tslib "^2.1.0"
+"@fullcalendar/react@^6.1.18":
+  version "6.1.18"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-6.1.18.tgz#6424d941dbc8aabdbf2db12c44c5e29a45daac11"
+  integrity sha512-Jwvb+T+/1yGZKe+UYXn0id022HJm0Fq2X/PGFvVh/QRYAI/6xPMRvJrwercBkToxf6LjqYXrDO+/NhRN6IDlmg==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"

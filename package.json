@@ -9,12 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fullcalendar/common": "5.11.5",
+    "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "5.11.5",
+<<<<<<< HEAD
     "@fullcalendar/daygrid": "5.11.5",
     "@fullcalendar/interaction": "5.11.5",
     "@fullcalendar/react": "5.11.5",
     "axios": "^1.10.0",
+=======
+    "@fullcalendar/daygrid": "^6.1.18",
+    "@fullcalendar/interaction": "^6.1.18",
+    "@fullcalendar/react": "^6.1.18",
+    "axios": "^1.9.0",
+>>>>>>> c1f4526 (병합)
     "next": "^15.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
