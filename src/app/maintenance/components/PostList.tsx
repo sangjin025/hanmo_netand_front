@@ -3,28 +3,15 @@
 import styles from "./PostList.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import SearchBar, { FilterOption } from "./SearchBar";
 import { InspectionSummary, ListResponse } from "./types";
 import Link from "next/link";
-=======
-import SearchBar from "./SearchBar";
-import { InspectionSummary, ListResponse } from "./types";
->>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
-=======
-import SearchBar, { FilterOption } from "./SearchBar";
-import { InspectionSummary, ListResponse } from "./types";
-import Link from "next/link";
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 
 export default function PostList() {
   const [list, setList] = useState<InspectionSummary[]>([]);
   const [page, setPage] = useState(0);
   const [size] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
   const [filter, setFilter] = useState<"전체" | "회사명" | "제품명">("전체");
   const [query, setQuery] = useState("");
 
@@ -92,87 +79,7 @@ export default function PostList() {
   useEffect(() => {
     fetchList();
   }, [page, size, filter, query]);
-=======
 
-  const [filter, setFilter] = useState<"전체" | "회사명" | "담당자명">("전체");
-=======
-  const [filter, setFilter] = useState<"전체" | "회사명" | "제품명">("전체");
->>>>>>> f608378 (fix : 검색기능 일부수정)
-  const [query, setQuery] = useState("");
-
-  const fetchList = async () => {
-    const token = localStorage.getItem("accessToken");
-    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/inspections`;
-    const headers = { Authorization: token };
-    try {
-      const base = { page, size };
-      if (filter === "회사명") {
-        const res = await axios.get<ListResponse>(url, {
-          headers,
-          params: { ...base, companyName: query.trim() },
-        });
-        setList(res.data.data.content);
-        setTotalPages(res.data.data.totalPages);
-        return;
-      }
-      if (filter === "제품명") {
-        const res = await axios.get<ListResponse>(url, {
-          headers,
-          params: { ...base, productName: query.trim() },
-        });
-        setList(res.data.data.content);
-        setTotalPages(res.data.data.totalPages);
-        return;
-      }
-<<<<<<< HEAD
-    };
-    fetchList();
-  }, [page, size]);
->>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
-
-=======
-
-      if (filter === "전체" && query.trim()) {
-        const [byCompany, byProduct] = await Promise.all([
-          axios.get<ListResponse>(url, {
-            headers,
-            params: { ...base, companyName: query.trim() },
-          }),
-          axios.get<ListResponse>(url, {
-            headers,
-            params: { ...base, productName: query.trim() },
-          }),
-        ]);
-
-        const merged = [
-          ...byCompany.data.data.content,
-          ...byProduct.data.data.content,
-        ].filter(
-          (item, idx, arr) => arr.findIndex((p) => p.id === item.id) === idx // id 중복 제거
-        );
-
-        setList(merged);
-        setTotalPages(Math.ceil(merged.length / size));
-        return;
-      }
-
-      /* 검색어 없이 */
-      const resAll = await axios.get<ListResponse>(url, {
-        headers,
-        params: base,
-      });
-      setList(resAll.data.data.content);
-      setTotalPages(resAll.data.data.totalPages);
-    } catch (e) {
-      console.error("이슈 목록 조회 실패:", e);
-    }
-  };
-
-  useEffect(() => {
-    fetchList();
-  }, [page, size, filter, query]);
-
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
   const handleSearch = (newFilter: typeof filter, newQuery: string) => {
     setFilter(newFilter);
     setQuery(newQuery);
@@ -180,15 +87,7 @@ export default function PostList() {
   return (
     <div className={styles.container}>
       <span className={styles.title}> 정기점검 조회 </span>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <SearchBar onSearch={handleSearch} />
-=======
-      <SearchBar />
->>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
-=======
-      <SearchBar onSearch={handleSearch} />
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
@@ -219,15 +118,7 @@ export default function PostList() {
           ))}
         </tbody>
       </table>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <div className={styles.pagination}>
-=======
-      <div>
->>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
-=======
-      <div className={styles.pagination}>
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
         <button onClick={() => setPage((p) => Math.max(p - 1, 0))}>
           ◀︎ 이전
         </button>

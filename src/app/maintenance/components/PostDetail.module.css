@@ -7,10 +7,6 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 .titleSection {
   width: 100%;
   display: flex;
@@ -19,22 +15,10 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
-=======
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 .title {
   font-size: 30px;
   width: 100%;
   font-weight: 600;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
->>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
-=======
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 }
 
 .form {
@@ -49,19 +33,12 @@
   display: flex;
   flex-wrap: wrap;
   border: 1px solid rgba(0, 0, 0, 0.3);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  /* overflow: hidden; */
->>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
-=======
->>>>>>> 16da1b9 (fix: 정기점검(maintenance) 컴포넌트 라우팅 및 스타일 수정)
   border-radius: 15px;
   margin-top: 40px;
 }
 
 .entries {
-  flex: 1 0 calc(50% - 1rem); /* 가로 50% 빼기 열 간격 절반 */
+  flex: 1 0 calc(50% - 1rem);
   display: flex;
   width: 350px;
   height: 70px;
@@ -71,30 +48,12 @@
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .entries:nth-last-child(1),
 .entries:nth-last-child(2) {
   border-bottom: none;
 }
 
 .entries:nth-child(even) {
-=======
-.field:nth-last-child(1),
-.field:nth-last-child(2) {
-  border-bottom: none;
-}
-
-.field:nth-child(even) {
->>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
-=======
-.entries:nth-last-child(1),
-.entries:nth-last-child(2) {
-  border-bottom: none;
-}
-
-.entries:nth-child(even) {
->>>>>>> 9f4e1ef (정기점검 상세: PostDetail에 KebabMenu 추가 및 수정·삭제 API 연동)
   border-right: none;
 }
 
@@ -119,7 +78,6 @@
   height: 220px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-
   padding: 10px;
 }
 

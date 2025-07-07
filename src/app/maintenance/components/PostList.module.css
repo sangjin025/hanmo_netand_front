@@ -9,21 +9,9 @@
 
 .title {
   font-size: 30px;
-<<<<<<< HEAD
-<<<<<<< HEAD
   padding: 45px 0px;
 }
 
-=======
-  font-weight: 600;
-  padding: 45px 0px;
-}
->>>>>>> be13743 (feat(postlist): 정기점검 목록 페이지에 검색바 통합 및 스타일·페이징 로직 보강)
-=======
-  padding: 45px 0px;
-}
-
->>>>>>> 6ee4712 (정기점검 모듈: 검색 기능, 동적 라우팅, 상세/목록/등록 페이지 구현)
 .table {
   width: 100%;
   border-collapse: separate;

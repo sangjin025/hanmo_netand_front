@@ -1,63 +1,74 @@
 .container {
-  position: fixed;
-  top: 110px;
-  left: 0;
-  width: 220px;
-  height: 100vh;
+  width: 687px;
+  height: 45px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  background-color: aliceblue;
+  justify-content: space-between;
+  background-color: beige;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.title {
-  background-color: #d7c690;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
+.filter {
+  flex: 0 0 95.67px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-left: none;
+  border-radius: 15px;
+  box-sizing: content-box;
+  text-align: center;
   font-weight: 600;
 }
 
-.nav {
+.input {
+  flex: 1 1 auto;
+  width: auto;
+  height: 100%;
+  /* margin-left: 10px; */
+}
+
+.btn {
+  width: 42px;
+  height: 100%;
   display: flex;
-  width: 100%;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding-top: 20px;
+  padding-right: 10px;
+}
+.container {
+  width: 687px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: beige;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.nav_item {
-  padding: 0.75rem 1rem;
-  width: 100%;
-  text-align: left;
+.filter {
+  flex: 0 0 95.67px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-left: none;
+  border-radius: 15px;
+  box-sizing: content-box;
+  text-align: center;
+  font-weight: 600;
 }
 
-.nav_item:hover {
-  font-weight: 900;
+.input {
+  flex: 1 1 auto;
+  width: auto;
+  height: 100%;
+  /* margin-left: 10px; */
 }
 
-.active {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  /* color: #0070f3;  */
->>>>>>> 2df8801 (feat(layout): app/maintenance/layout.tsx에 Sidebar 배치 및 children 렌더링 구조 추가)
-=======
->>>>>>> ebf2f9d (feat(detail): 정기점검 상세 조회 페이지(PostDetail) 컴포넌트 추가)
-  /* border-bottom-color: #0070f3; */
-  font-weight: bold;
-  background-color: #d9d9d9;
-  transform: translateY(2px);
-  box-shadow: inset -2px -2px 2px 0 rgba(0, 0, 0, 0.25);
-}
-
-@media (max-width: 960px) {
-  .container {
-    display: none !important;
-  }
+.btn {
+  width: 42px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
 }
