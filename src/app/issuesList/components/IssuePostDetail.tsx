@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 import { IssueDetailData } from "./types";
+import CommentSection from "./CommentSection";
 
 type Entry = {
   label: string;
@@ -28,6 +29,7 @@ export default function IssuePostDetail({
   readOnly = false,
 }: Props) {
   const { id } = useParams();
+
   const router = useRouter();
   const [detail, setDetail] = useState<IssueDetailData | null>(null);
 
@@ -86,6 +88,7 @@ export default function IssuePostDetail({
           </button>
         </Link>
       </form>
+      <CommentSection issueId={Array.isArray(id) ? id[0] : id || ""} />
     </div>
   );
 }

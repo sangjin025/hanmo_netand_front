@@ -60,6 +60,7 @@
 .statusbtn {
   color: #727272;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .table th:nth-child(1) {
