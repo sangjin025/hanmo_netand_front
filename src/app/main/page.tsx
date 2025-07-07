@@ -49,39 +49,6 @@ export default function Main() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchInspectionDates = async () => {
-  //     if (notifications.length === 0) return;
-
-  //     const token = localStorage.getItem("accessToken");
-  //     if (!token) return;
-
-  //     const ids = Array.from(new Set(notifications.map((n) => n.targetId)));
-
-  //     try {
-  //       const results = await Promise.all(
-  //         ids.map(async (id) => {
-  //           const res = await axios.get<InspectionDetailResponse>(
-  //             `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`,
-  //             { headers: { Authorization: token } }
-  //           );
-  //           return {
-  //             id,
-  //             nextInspectionDate: res.data.data.nextInspectionDate,
-  //           };
-  //         })
-  //       );
-  //       setInspectionDates(results);
-  //       console.log(results);
-  //     } catch (err) {
-  //       console.error("❌ inspectionDates 조회 실패:", err);
-  //       setInspectionDates([]);
-  //     }
-  //   };
-
-  //   fetchInspectionDates();
-  // }, [notifications]);
-
   useEffect(() => {
     const fetchInspectionDates = async () => {
       const token = localStorage.getItem("accessToken");
@@ -139,7 +106,6 @@ export default function Main() {
     }
   };
 
-  // markAsRead 바로 아래에 추가
   const deleteNotification = async (id: number) => {
     const token = localStorage.getItem("accessToken");
     if (!token) return;

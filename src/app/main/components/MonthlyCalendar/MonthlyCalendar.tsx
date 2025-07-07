@@ -2,28 +2,23 @@
 import styles from "./MonthlyCalendar.module.css";
 import { Calendar } from "@fullcalendar/core";
 const _keepCore = Calendar.name;
-// import FullCalendar, { EventInput, DatesSetArg } from "@fullcalendar/react";
 import FullCalendar from "@fullcalendar/react";
 import type { CalendarOptions } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import koLocale from "@fullcalendar/core/locales/ko";
 import { useState } from "react";
-
-// interface MonthlyCalendarProps {
-//   events: EventInput[];
-// }
+import { useRouter } from "next/navigation";
 
 interface MonthlyCalendarProps {
   events: CalendarOptions["events"];
 }
 
 export default function MonthlyCalendar({ events }: MonthlyCalendarProps) {
+  const router = useRouter();
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1;
-
-  // const plugins: PluginInput[] = [dayGridPlugin, interactionPlugin];
 
   const calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
@@ -35,6 +30,10 @@ export default function MonthlyCalendar({ events }: MonthlyCalendarProps) {
     height: "100%",
     dayMaxEvents: 3,
     events,
+    eventClick: (info) => {
+      const id = info.event.id;
+      router.push(`/maintenance/${id}`);
+    },
   };
 
   return (
