@@ -112,13 +112,13 @@ export default function SignUpForm() {
     }
   };
 
-  const entries: Entry[] = [
-    { label: "이메일", name: "email", value: form.email },
-    { label: "비밀번호", name: "password", value: form.password },
-    { label: "이름", name: "name", value: form.name },
-    { label: "휴대전화 번호", name: "phone", value: form.phone },
-    { label: "회사구분", name: "userType", value: form.userType },
-  ];
+  // const entries: Entry[] = [
+  //   { label: "이메일", name: "email", value: form.email },
+  //   { label: "비밀번호", name: "password", value: form.password },
+  //   { label: "이름", name: "name", value: form.name },
+  //   { label: "휴대전화 번호", name: "phone", value: form.phone },
+  //   { label: "회사구분", name: "userType", value: form.userType },
+  // ];
 
   useEffect(() => {});
 
