@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -101,7 +102,9 @@ export default function Login() {
         </button>
       </form>
       <div className={styles.btmSection}>
-        <div> 회원가입 </div>
+        <Link href="/signup">
+          <div style={{ cursor: "pointer" }}>회원가입</div>
+        </Link>
         <div> 아이디 찾기 / 비밀번호 찾기 </div>
       </div>
     </main>

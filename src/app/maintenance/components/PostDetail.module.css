@@ -38,11 +38,7 @@
 }
 
 .entries {
-<<<<<<< HEAD
-  flex: 1 0 calc(50% - 1rem); /* 가로 50% 빼기 열 간격 절반 */
-=======
   flex: 1 0 calc(50% - 1rem);
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
   display: flex;
   width: 350px;
   height: 70px;
@@ -82,10 +78,6 @@
   height: 220px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-<<<<<<< HEAD
-
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
   padding: 10px;
 }
 
@@ -96,8 +88,4 @@
   opacity: 90%;
   color: white;
   border-radius: 15px;
-<<<<<<< HEAD
-  cursor: pointer;
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
 }

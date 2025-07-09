@@ -13,10 +13,6 @@ export default function MaintenanceDetailPage() {
 
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
-<<<<<<< HEAD
-=======
-
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
     const fetchData = async () => {
       const token = localStorage.getItem("accessToken");
       if (!token) {
@@ -26,10 +22,7 @@ export default function MaintenanceDetailPage() {
 
       try {
         const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/inspections/${id}`;
-<<<<<<< HEAD
         console.log("Fetching:", url, "with token:", token);
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
         const response = await axios.get<{ data: DetailData }>(url, {
           headers: {
             authorization: token,
@@ -44,10 +37,6 @@ export default function MaintenanceDetailPage() {
         );
       }
     };
-<<<<<<< HEAD
-=======
-
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
     fetchData();
   }, [id]);
 
@@ -60,10 +49,6 @@ export default function MaintenanceDetailPage() {
 
   const handleDelete = async () => {
     if (!id) return;
-<<<<<<< HEAD
-=======
-
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
     try {
       const token = localStorage.getItem("accessToken")!;
       await axios.delete(

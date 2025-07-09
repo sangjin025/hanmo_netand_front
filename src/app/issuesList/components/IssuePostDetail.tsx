@@ -7,10 +7,6 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 import { IssueDetailData } from "./types";
-<<<<<<< HEAD
-import CommentSection from "./CommentSection";
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
 
 type Entry = {
   label: string;
@@ -32,10 +28,6 @@ export default function IssuePostDetail({
   readOnly = false,
 }: Props) {
   const { id } = useParams();
-<<<<<<< HEAD
-
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
   const router = useRouter();
   const [detail, setDetail] = useState<IssueDetailData | null>(null);
 
@@ -94,10 +86,6 @@ export default function IssuePostDetail({
           </button>
         </Link>
       </form>
-<<<<<<< HEAD
-      <CommentSection issueId={Array.isArray(id) ? id[0] : id || ""} />
-=======
->>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
     </div>
   );
 }
