@@ -2,7 +2,7 @@ import React from "react";
 import SignUpForm from "./components/SignUpForm";
 import styles from "./components/SignUpForm.module.css";
 
-const Page = () => {
+const page = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>회원가입</h2>
@@ -11,4 +11,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
