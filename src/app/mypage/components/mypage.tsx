@@ -1,9 +1,8 @@
-'use client';
-import Image from 'next/image';
-import React, { useState, ChangeEvent, ReactNode } from 'react';
-import styles from './mypage.module.css';
-import Link from 'next/link';
-import axios from 'axios';
+"use client";
+import Image from "next/image";
+import React, { useState, ChangeEvent, ReactNode } from "react";
+import styles from "./mypage.module.css";
+import Link from "next/link";
 
 interface UserInfo {
   name: string;
@@ -20,101 +19,119 @@ interface Field {
 
 const fields: Field[] = [
   {
-    label: <Image src="/images/mypage/person_mp.png" alt="이름" width={26} height={26} />,
-    key: 'name',
-    type: 'text',
+    label: (
+      <Image
+        src="/images/mypage/person_mp.png"
+        alt="이름"
+        width={26}
+        height={26}
+      />
+    ),
+    key: "name",
+    type: "text",
   },
   {
-    label: <Image src="/images/mypage/person_mp.png" alt="이메일" width={26} height={26} />,
-    key: 'email',
-    type: 'email',
+    label: (
+      <Image
+        src="/images/mypage/person_mp.png"
+        alt="이메일"
+        width={26}
+        height={26}
+      />
+    ),
+    key: "email",
+    type: "email",
   },
   {
-    label: <Image src="/images/mypage/phone_mp.png" alt="전화번호" width={20} height={26} />,
-    key: 'phone',
-    type: 'tel',
+    label: (
+      <Image
+        src="/images/mypage/phone_mp.png"
+        alt="전화번호"
+        width={20}
+        height={26}
+      />
+    ),
+    key: "phone",
+    type: "tel",
   },
 ];
 
 export default function MyPage() {
   const [user, setUser] = useState<UserInfo>({
-    name: '홍길동',
-    email: 'juju009@naver.com',
-    phone: '010-1234-5678',
+    name: "유상진",
+    email: "sangjin025@gmail.com",
+    phone: "010-4411-6938",
   });
   const [form, setForm] = useState<UserInfo>({ ...user });
   const [editMode, setEditMode] = useState(false);
 
   // SMS 인증 UI 컨트롤
   const [smsRequested, setSmsRequested] = useState(false);
-  const [smsCode, setSmsCode] = useState('');
+  const [smsCode, setSmsCode] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name as FieldKey;
-    setForm(prev => ({ ...prev, [key]: e.target.value }));
+    setForm((prev) => ({ ...prev, [key]: e.target.value }));
   };
 
   const handleEdit = () => {
     setForm({ ...user });
     setEditMode(true);
     setSmsRequested(true);
-    setSmsCode('');
+    setSmsCode("");
   };
 
   const handleCancel = () => {
     setForm({ ...user });
     setEditMode(false);
     setSmsRequested(false);
-    setSmsCode('');
+    setSmsCode("");
   };
 
   const handleSave = () => {
     setUser({ ...form });
     setEditMode(false);
     setSmsRequested(false);
-    setSmsCode('');
+    setSmsCode("");
   };
 
   // 인증번호 발송 (TODO: 실제 API 연동)
   const handleSendSms = () => {
     if (!form.phone.match(/^\d{10,11}$/)) {
-      alert('휴대전화 번호 형식이 올바르지 않습니다.');
+      alert("휴대전화 번호 형식이 올바르지 않습니다.");
       return;
     }
-    alert('인증번호를 발송했습니다.');
+    alert("인증번호를 발송했습니다.");
   };
 
   // 인증번호 확인 (TODO: 실제 API 연동)
   const handleVerifySms = () => {
-    if (smsCode === '1234') alert('인증 완료!');
-    else alert('인증번호가 올바르지 않습니다.');
+    if (smsCode === "1234") alert("인증 완료!");
+    else alert("인증번호가 올바르지 않습니다.");
   };
 
   return (
     <div className={styles.container}>
       {/* ─── 사이드바 ───────────────────────── */}
       <aside className={styles.sidebar}>
+        {/* 1) 골드 박스에 “마이페이지” */}
+        <div className={styles.sidebarHeader}>마이페이지</div>
 
-          {/* 1) 골드 박스에 “마이페이지” */}
-        <div className={styles.sidebarHeader}>
-          마이페이지
-      </div>
-
-      {/* 2) 프로필 사진 */}
+        {/* 2) 프로필 사진 */}
         <div className={styles.sidebarProfile}>
           <Image
-          src="/images/mypage/profile.png"
-          width={80}
+            src="/images/mypage/profile.png"
+            width={80}
             height={80}
-          alt="프로필"
+            alt="프로필"
           />
         </div>
-       
+
         <ul className={styles.navList}>
-                <li className={styles.navItemActive}>내 정보</li>
-       <li className={styles.navItem}>
-          <Link href="/mypage/issues">이슈 목록</Link>
-        </li>
+          <li className={styles.navItemActive}>내 정보</li>
+          <li className={styles.navItem}>
+            <Link href="/issuesList">이슈 목록</Link>
+          </li>
         </ul>
       </aside>
 
@@ -166,7 +183,7 @@ export default function MyPage() {
             <div
               key={key}
               className={`${styles.fieldRow} ${
-                idx === fields.length - 1 ? styles.last : ''
+                idx === fields.length - 1 ? styles.last : ""
               }`}
             >
               <span className={styles.fieldLabel}>{label}</span>
@@ -178,16 +195,13 @@ export default function MyPage() {
                     type={type}
                     value={form[key]}
                     onChange={handleChange}
-                    readOnly={key === 'email'}
+                    readOnly={key === "email"}
                     className={`${styles.fieldInput} ${
-                      key === 'email' ? styles.fieldInputDisabled : ''
+                      key === "email" ? styles.fieldInputDisabled : ""
                     }`}
                   />
-                  {key === 'phone' && (
-                    <button
-                      className={styles.smsBtn}
-                      onClick={handleSendSms}
-                    >
+                  {key === "phone" && (
+                    <button className={styles.smsBtn} onClick={handleSendSms}>
                       인증
                     </button>
                   )}
@@ -213,14 +227,11 @@ export default function MyPage() {
               <input
                 type="text"
                 value={smsCode}
-                onChange={e => setSmsCode(e.target.value)}
+                onChange={(e) => setSmsCode(e.target.value)}
                 placeholder="인증번호 입력"
                 className={styles.fieldInput}
               />
-              <button
-                className={styles.verifyBtn}
-                onClick={handleVerifySms}
-              >
+              <button className={styles.verifyBtn} onClick={handleVerifySms}>
                 확인
               </button>
             </div>

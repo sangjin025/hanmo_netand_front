@@ -1,15 +1,20 @@
-/* ─── 레이아웃 ───────────────────────────────────────── */
 .container {
   width: 1500px;
   margin-top: 0px;
   display: flex;
   min-height: calc(100vh - 120px);
 }
+
 .sidebar {
+  position: fixed; /* 화면에 고정 */
+  top: 110px; /* 상단에서 0px */
+  left: 0; /* 왼쪽에서 0px */
   width: 318px;
+  height: 100vh;
   background-color: #fff;
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
 }
+
 .logo {
   text-align: center;
   margin-bottom: 40px;
@@ -33,9 +38,8 @@
   color: #414141;
   background-color: #f4f4f4;
   font-weight: bold;
-  box-shadow: 
-    inset 0px -4px 2px rgba(0, 0, 0, 0.1),   /* 아래쪽 안쪽 */
-    inset 4px 0px 2px rgba(0, 0, 0, 0.1);    /* 오른쪽 안쪽 */
+  box-shadow: inset 0px -4px 2px rgba(0, 0, 0, 0.1),
+    /* 아래쪽 안쪽 */ inset 4px 0px 2px rgba(0, 0, 0, 0.1); /* 오른쪽 안쪽 */
 }
 
 .mainContent {
@@ -52,8 +56,8 @@
 /* 사이드바 상단의 골드 박스 */
 .sidebarHeader {
   width: 100%;
-  height: 60px;                   /* 높이 조절 */
-  background-color: #D7C690;      /* 골드 컬러 */
+  height: 60px; /* 높이 조절 */
+  background-color: #d7c690; /* 골드 컬러 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,16 +65,16 @@
   font-weight: bold;
   color: #414141;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 3px 20px -8px rgba(0,0,0,0.5);  
+  box-shadow: 0 3px 20px -8px rgba(0, 0, 0, 0.5);
 }
 
 /* 프로필 사진 래퍼 */
 .sidebarProfile {
   /* 남은 공간 만큼 세로 여유를 줘서 중앙에 배치 */
   display: flex;
-  align-items: center;    /* 세로 중앙 정렬 */
-  justify-content: center;/* 가로 중앙 정렬 (선택) */
-  
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 (선택) */
+
   /* 위아래 여백을 좀 더 줄/늘이고 싶으면 조정하세요 */
   padding: 20px 0;
 }
@@ -134,7 +138,7 @@
 .editBtn,
 .saveBtn {
   background-color: #0976ea;
-  color: #C1DDFA;
+  color: #c1ddfa;
 }
 .cancelBtn {
   background-color: #f2f2f2;

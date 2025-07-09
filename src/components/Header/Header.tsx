@@ -4,13 +4,20 @@ import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLoggedIn(!!token);
+  }, []);
 
   return (
     <header className={styles.header}>
-      <Link href="/" className={styles.logo}>
+      <Link href="/main" className={styles.logo}>
         <Image
           src="/images/netand_logo.png"
           alt="넷앤드"
@@ -45,8 +52,11 @@ export default function Header() {
         </Link>
       </nav>
       <div className={styles.controls}>
-        <Link href="/login" className={styles.logout}>
-          로그인/회원가입
+        <Link
+          href={isLoggedIn ? "/mypage" : "/login"}
+          className={styles.logout}
+        >
+          {isLoggedIn ? "마이페이지" : "로그인/회원가입"}
         </Link>
         <button className={styles.hamburger}>
           <Image src="/images/hamburger.png" alt="" width={36} height={25} />
