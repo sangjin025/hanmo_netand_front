@@ -1,11 +1,18 @@
 .container {
   width: 700px;
   height: 100%;
+<<<<<<< HEAD
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
+=======
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+>>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
 }
 
 .titleSection {
@@ -90,5 +97,8 @@
   opacity: 90%;
   color: white;
   border-radius: 15px;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
 }

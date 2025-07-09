@@ -3,13 +3,20 @@
   top: 110px;
   left: 0;
   width: 220px;
+<<<<<<< HEAD
   height: calc(100vh - 110px);
+=======
+  height: 100vh;
+>>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   background-color: aliceblue;
+<<<<<<< HEAD
   /* overflow-y: auto; */
+=======
+>>>>>>> 3ff7182b0e64e2acba8a51f308c97b0c75b57164
 }
 
 .title {
