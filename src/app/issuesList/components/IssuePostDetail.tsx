@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import KebabMenu from "@/components/KebabMenu/KebabMenu";
 import { IssueDetailData } from "./types";
+import CommentSection from "./CommentSection";
 
 type Entry = {
   label: string;
@@ -86,6 +87,7 @@ export default function IssuePostDetail({
           </button>
         </Link>
       </form>
+      <CommentSection issueId={id as string} />
     </div>
   );
 }

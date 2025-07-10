@@ -13,7 +13,7 @@ export default function Header() {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     setIsLoggedIn(!!token);
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <header className={styles.header}>

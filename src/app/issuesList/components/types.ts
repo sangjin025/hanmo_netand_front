@@ -11,6 +11,7 @@ export interface IssueDetailData {
   assigneeName: string; // 담당자 배정
   dueDate: string; // 해결 기한 (ISO 문자열)
   description: string; // 상세 설명
+  
 }
 
 export type IssueFormData = Omit<IssueDetailData, "id">;
